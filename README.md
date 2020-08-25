@@ -1,4 +1,10 @@
-# landing-kabalance
+# Landing Kabalance
+
+The landing page for Kabalance, a food shop.
+
+## Technologies used
+
+- Preact
 
 ## CLI Commands
 
