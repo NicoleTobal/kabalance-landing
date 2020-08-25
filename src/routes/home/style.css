@@ -1,0 +1,16 @@
+.home {
+	padding: 56px 20px;
+	min-height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.personalPhoto {
+height: 350px;
+}
+
+.separator {
+  background-color: black;
+  height: 3px;
+  margin: 0 30px;
+}

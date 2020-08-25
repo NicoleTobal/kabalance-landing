@@ -1,0 +1,21 @@
+{
+  "name": "landing-kabalance",
+  "short_name": "landing-kabalance",
+  "start_url": "/src",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff",
+  "theme_color": "#673ab8",
+  "icons": [
+    {
+      "src": "/assets/images/symbol_black.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/assets/images/symbol_black.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

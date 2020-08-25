@@ -1,0 +1,76 @@
+
+
+.clearfix {
+  zoom: 1;
+}
+.clearfix:before, .clearfix:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+.clearfix:after {
+  clear: both;
+}
+
+.sociallinks {
+  max-width: 17.7525em;
+  display: -webkit-inline-box;
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  font-family: Reboto-Light;
+}
+
+.sociallink {
+  width: 2.5em;
+  height: 2.5em;
+  font-size: 2.25em;
+  text-decoration: none;
+  background: #565656;
+  color: #838383;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin: 0.065em;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-transition: all .4s ease-out;
+  transition: all .4s ease-out;
+  -webkit-transform: translateZ(0px);
+          transform: translateZ(0px);
+}
+.sociallink:hover, .sociallink:focus, .sociallink:active {
+  background: #2B6845;
+  color: #fff;
+  z-index: 1;
+  box-shadow: 0 0 1.125em 0 rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+.sociallink:hover:after, .sociallink:focus:after, .sociallink:active:after {
+  bottom: 0.7em;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+.sociallink:after {
+  width: 100%;
+  text-align: center;
+  left: 0;
+  color: white;
+  bottom: -6.75em;
+  font-size: .35em;
+  position: absolute;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.sociallink img {
+  height: 30px;
+}

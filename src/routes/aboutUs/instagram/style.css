@@ -1,0 +1,26 @@
+.instagramSection {
+  position: relative;
+}
+
+.imageContainer {
+  height: 400px;
+  width: 312px;
+  position: absolute;
+}
+
+.imageContainer:nth-child(1) {left: 90px;z-index: 1; top: 36px;}
+.imageContainer:nth-child(2) {top:0;left:386px; width: 232px; height: 334px; z-index: 2;}
+.imageContainer:nth-child(3) {left: 500px; top: 156px; z-index: 6;}
+.imageContainer:nth-child(4) {top: 410px; left: 271px; z-index: 5;height: 340px;width: 273px;}
+.imageContainer:nth-child(5) {top: 10px; right: 350px; z-index: 4;}
+.imageContainer:nth-child(6) {right: 368px; top: 441px; height: 350px; width: 250px; z-index: 1;}
+.imageContainer:nth-child(7) {right: 100px; top: 90px; z-index: 3;}
+
+.imageContainer img {
+  height: 100%;
+  width: 100%;
+}
+
+.imageContainer:hover {
+  z-index: 10;
+}
