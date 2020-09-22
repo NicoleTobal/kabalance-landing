@@ -69,5 +69,15 @@
 
 .logo img {
   height: 57px;
-  padding: 5px;
+  padding: 8px;
+}
+
+.cart {
+  padding: 0px 2px 4px;
+  height: 26px;
+  cursor: pointer;
+}
+
+.cart:hover {
+  filter: contrast(0.1);
 }

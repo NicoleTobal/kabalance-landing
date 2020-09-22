@@ -31,7 +31,7 @@ position: absolute;
 
 .cont_modal {
   width: 250px;
-  height: 400px;
+  height: 500px;
   box-shadow: #2b6845 8px 16px;
   position: relative;
   -webkit-transition: all 0.5s;
@@ -47,15 +47,19 @@ background-color: #D8D9DB;
 .cont_photo {
   position: relative;
   width: 250px;
-  height: 400px;
+  height: 500px;
   overflow: hidden;
   background-color: #4c4e4dc7;
 float: left;
 z-index: 2;
+
 -webkit-transition: all 0.5s;
--o-transition: all 0.5s;
+-o-transition: all 0.5s; 
 transition: all 0.5s;
-transition: all 0.5s; 
+  transition-delay: 1.2s;
+-webkit-transition-delay: 0.7s;
+-o-transition-delay: 0.7s;
+transition-delay: 0.7s;
 box-shadow: 0 0 4rem -1rem rgba(0,0,0,0.5);
 }
 
@@ -80,7 +84,7 @@ position: absolute;
 top: 0px;
 left: 240px;
   margin-left: 10px;
-  height: 400px;
+  height: 500px;
   float: left; 
 z-index: 3;
 box-shadow: 1px 1px  20px  -5px  rgba(0,0,0,0.2);
@@ -189,6 +193,14 @@ padding: 20px;
   position: absolute;
   right: -15px;
   top:50%;
+
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s; 
+  transition: all 0.5s;
+    transition-delay: 1.2s;
+  -webkit-transition-delay: 0.7s;
+  -o-transition-delay: 0.7s;
+  transition-delay: 0.7s;
 }
 .cont_btn_open_dets  > svg {
 display: block;
@@ -235,7 +247,7 @@ padding-left: 20px;
 text-align: left;
 padding-right: 15px;
 color: #565656;
-height: 400px;
+height: 500px;
 }
 
 .cont_btn_mas_dets {
@@ -251,15 +263,15 @@ height: 400px;
   position: relative;
   float: left;
   width: 100%;
-height: 400px;
+  height: 500px;
   overflow: hidden;
 }
 
 .cont_text_det_preparation {
   position: relative;
   width: 250px;
-  height: 330px;
-  margin-top: 70px;
+  height: 500px;
+  margin-top: 50px;
 }
 
 .cont_text_det_preparation li {
@@ -267,11 +279,12 @@ height: 400px;
   letter-spacing: 1.5;
   font-family: Reboto-Light;
   list-style: none;
+  line-height: 1;
 }
 
 .cont_text_det_preparation p {
   font-family: Reboto-Bold;
-  margin-top: 10px;
+  margin: 10px 0 7px;
 }
 
 .cont_modal_active > .cont_text_ingredients  > .cont_btn_open_dets > svg {
@@ -279,13 +292,13 @@ height: 400px;
 }
 .cont_modal_active > .cont_text_ingredients{
   width: 250px;
-  height: 400px;
-left: 240px;
-z-index: 1;
+  height: 500px;
+  left: 240px;
+  z-index: 1;
 }
 .cont_modal_active {
   width: 500px;
-  height: 400px;  
+  height: 500px;  
 }
 
 .cont_modal_active > .cont_photo > .cont_mins > .sub_mins {
@@ -304,3 +317,80 @@ z-index: 1;
   bottom: 0px;
 }
 
+.collapsed .cont_photo,
+.collapsed .cont_modal {
+  width: 175px;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s; 
+  transition: all 0.5s;
+    transition-delay: 1.2s;
+  -webkit-transition-delay: 0.7s;
+  -o-transition-delay: 0.7s;
+  transition-delay: 0.7s;
+}
+
+.collapsed .cont_text_ingredients {
+  left: 182px;
+
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s; 
+  transition: all 0.5s;
+    transition-delay: 1.2s;
+  -webkit-transition-delay: 0.7s;
+  -o-transition-delay: 0.7s;
+  transition-delay: 0.7s;
+}
+
+.collapsed .cont_btn_open_dets {
+  right: 0;
+
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s; 
+  transition: all 0.5s;
+    transition-delay: 1.2s;
+  -webkit-transition-delay: 0.7s;
+  -o-transition-delay: 0.7s;
+  transition-delay: 0.7s;
+}
+
+.quantity {
+  display: flex;
+  background-color: white;
+  width: 80px;
+  border-radius: 6px;
+  margin-top: 20px;
+}
+
+.orderData p {
+  margin: 0;
+}
+
+.cont_text_det_preparation button {
+  padding: 5px 45px;
+}
+
+.orderData {
+  position: absolute;
+  bottom: 50px;
+  right: 0;
+  width: 250px;
+}
+
+.options input {
+  height: 17px;
+  width: 17px;
+  position: absolute;
+  left: 16px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  opacity: 0;
+}
+
+.options span {
+  height: 17px;
+  width: 17px;
+  position: absolute;
+  left: 16px;
+  background-color: #ffffff;
+  border-radius: 20px;
+}

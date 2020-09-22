@@ -35,3 +35,27 @@ html, body {
   height: 100%;
   width: 100%;
 }
+
+.animate__animated.animate__fadeIn {
+  --animate-repeat: 2;
+}
+
+.col-md-2,
+.col-md-3,
+.col-md-6 {
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s; 
+  transition: all 0.5s;
+    transition-delay: 1.2s;
+  -webkit-transition-delay: 0.7s;
+  -o-transition-delay: 0.7s;
+  transition-delay: 0.7s;
+}
+
+input[type=checkbox], input[type=radio] {
+  float: left;
+}
+
+input[type=radio]:checked {
+  background: green;
+}

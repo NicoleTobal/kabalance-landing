@@ -1,16 +1,56 @@
 .home {
-	padding: 56px 20px;
+	padding: 56px 20px 0;
 	min-height: 100%;
   width: 100%;
   text-align: center;
 }
 
 .personalPhoto {
-height: 350px;
+  height: 370px;
 }
 
 .separator {
   background-color: black;
   height: 3px;
   margin: 0 30px;
+}
+
+i {
+  font-family: Reboto-Light;
+  font-weight: 100;
+}
+
+.social {
+  position: relative;
+  height: 800px;
+  margin: 45px 0;
+}
+
+.home h1 i {
+  margin: 50px 0px auto;
+  font-size: 1.5rem;
+}
+
+.firstSection {
+  height: 1050px;
+}
+
+.secondSection {
+  padding: 0 120px;
+}
+
+.secondSection h1 {
+  font-family: Reboto-Regular;
+  font-weight: 100;
+  font-size: 2rem;
+  margin-top: 50px;
+}
+
+.resellers {
+  justify-content: center;
+  margin: 50px 0;
+}
+
+.reseller img {
+  width: 200px;
 }

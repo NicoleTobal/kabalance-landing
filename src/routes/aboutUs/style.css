@@ -1,6 +1,6 @@
 .aboutUsContainer {
   position: relative;
-  height: 1100px;
+  height: auto;
   display: block;
   padding-top: 90px;
   text-align: center;
@@ -16,25 +16,26 @@
   font-family: Reboto-Light;
   margin: 25px 19%;
   color: black;
+  margin-right: 0;
 }
 
 .verticalLine {
   width: 3px;
-  height: 900px;
+  height: 350px;
   position: absolute;
   left: 30px;
-  top:20px;
+  top: 120px;
 }
 
 .path_vert {
-  stroke-dasharray: 1000;
+  stroke-dasharray: 800;
 /*   stroke-dashoffset: 800; */
   animation: draw1 2s linear alternate;
 }
 
 @keyframes draw1 {
   from {
-    stroke-dashoffset: 1200;
+    stroke-dashoffset: 1000;
   }
   to {
     stroke-dashoffset: 0;
