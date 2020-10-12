@@ -1,13 +1,13 @@
 .contact {
   text-align: center;
   margin-top: 70px;
-  color: #2B6845;
+  color: white;
   text-transform: uppercase;
   position: relative;
-  background-color: #D8D9DB;
+  background-color: #173d2e;
   padding: 20px 0 20px;
 }
 
 .contact h2 {
-  font-family: Reboto-Regular;
+  font-family: Reboto-Light;
 }

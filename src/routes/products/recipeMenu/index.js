@@ -2,14 +2,45 @@ import { h } from 'preact';
 import style from './style';
 import { useState, useEffect } from 'preact/hooks';
 import MovingImage from '../movingImage';
+import { connect } from 'react-redux';
+import { addProduct } from '../../../stores/cartStore';
 
-const RecipeMenu = ({ image, title, flavours = [], styles = [], sizes = [], onClick, collapsed }) => {
+// FIX ME: add another component for products characteristics
+let RecipeMenu = ({ addProduct, image, title, price: productPrice, flavours = [], styles = [], sizes = [], onClick, collapsed }) => {
   const [hide, setHide] = useState(true);
+  const [selectedFlavour, setSelectedFlavour] = useState('');
+  const [selectedStyle, setSelectedStyle] = useState('');
+  const [selectedSize, setSelectedSize] = useState('');
+  const [quantity, setQuantity] = useState(0);
+  const shouldBlock = flavours.length > 0 && selectedFlavour === '' ||
+    styles.length > 0 && selectedStyle === '' ||
+    sizes.length > 0 && selectedSize === '';
   useEffect(() => {
     if (collapsed) {
       setHide(true);
     }
   }, [collapsed])
+  useEffect(() => {
+    if (!hide) {
+      setQuantity(0);
+    }
+  }, [hide]);
+  const addToCart = () => {
+    if (!shouldBlock) {
+      //add to cart
+      addProduct({
+        name: title,
+        image,
+        quantity,
+        selectedFlavour,
+        selectedSize,
+        selectedStyle,
+        price: productPrice,
+      });
+      setHide(true);
+      onClick(true);
+    }
+  };
   return (
     <div class={`${style.recipeContainer} ${hide || collapsed ? style.hide : ''} ${collapsed ? style.collapsed : ''}`}>
       <div class={style.cont_principal} >
@@ -33,58 +64,92 @@ const RecipeMenu = ({ image, title, flavours = [], styles = [], sizes = [], onCl
               <div class={style.cont_over_hidden} >
                 <div class={style.cont_text_det_preparation} >
                   <div class={style.options}>
-                    { flavours.length > 0 ? <p>Sabores</p> : ''}
                     {
-                      flavours.map((flavour, index) => (
-                        <li key={index}>
-                          <input type="radio" id="male" name="flavour" value="male" />
-                          <span class="checkmark" />
-                          {flavour}
-                        </li>
-                      ))
+                      flavours.length > 0 ? (
+                        <div class={style.optionsRow}>
+                          <div class={style.title}>SABOR</div>
+                          <div class="dropdown"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class={`${style.option} dropdown-toggle`}>
+                              {selectedFlavour === '' ? 'Seleccionar' : selectedFlavour}
+                            </div>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                              {
+                                flavours.map((flavour, index) => (
+                                  <a class="dropdown-item" onClick={() => setSelectedFlavour(flavour)} key={index}>
+                                    <span class={flavour === selectedFlavour ? style.active : ''} />
+                                    {flavour}
+                                  </a>
+                                ))
+                              }
+                            </div>
+                          </div>
+                        </div>
+                      ) : ''
                     }
-                    { styles.length > 0 ? <p>Estilos</p> : ''}
                     {
-                      styles.map((style, index) =>
-                        <li key={index}>
-                          <input type="radio" id="male" name="style" value="male" />
-                          <span class="checkmark" />
-                          {style}
-                        </li>)
+                      styles.length > 0 ? (
+                        <div class={style.optionsRow}>
+                          <div class={style.title}>ESTILO</div>
+                          <div class="dropdown"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class={`${style.option} dropdown-toggle`}>
+                              {selectedStyle === '' ? 'Seleccionar' : selectedStyle}
+                            </div>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                              {
+                                styles.map((styleOption, index) => (
+                                  <a class="dropdown-item" onClick={() => setSelectedStyle(styleOption)} key={index}>
+                                    <span class={styleOption === selectedStyle ? style.active : ''} />
+                                    {styleOption}
+                                  </a>
+                                ))
+                              }
+                            </div>
+                          </div>
+                        </div>
+                      ) : ''
                     }
-                    { sizes.length > 0 ? <p>Tamaños</p> : ''}
                     {
-                      sizes.map((size, index) =>
-                        <li key={index}>
-                          <input type="radio" id="male" name="size" value="male" />
-                          <span class="checkmark" />
-                          {size}
-                        </li>)
+                      sizes.length > 0 ? (
+                        <div class={style.optionsRow}>
+                          <div class={style.title}>TAMAÑO</div>
+                          <div class="dropdown"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class={`${style.option} dropdown-toggle`}>
+                              {selectedSize === '' ? 'Seleccionar' : selectedSize}
+                            </div>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                              {
+                                sizes.map((size, index) => (
+                                  <a class="dropdown-item" onClick={() => setSelectedSize(size)} key={index}>
+                                    <span class={size === selectedSize ? style.active : ''} />
+                                    {size}
+                                  </a>
+                                ))
+                              }
+                            </div>
+                          </div>
+                        </div>
+                      ) : ''
                     }
                   </div>
-                  <div class={style.orderData}>
+                  <div class={`${style.orderData} ${shouldBlock ? style.disabled : ''}`}>
                     <div class={style.quantity}>
-                      <span>-</span>
-                      <p>0</p>
-                      <span>+</span>
+                      <span onClick={() => { if (quantity > 0 && !shouldBlock) { setQuantity(quantity - 1) }}}>-</span>
+                      <p>{quantity}</p>
+                      <span onClick={() => { if (quantity < 10 && !shouldBlock) { setQuantity(quantity + 1) }}}>+</span>
                     </div>
-                    <p>$10</p>
-                    <button>Agregar</button>
+                    <p class={style.price}>${productPrice * quantity}</p>
+                    <button onClick={addToCart}>Agregar</button>
                   </div>
                 </div>
               </div>
-              {
-                flavours.length > 0 || sizes.length > 0 || styles.length > 0 ? (
-                  <div class={style.cont_btn_open_dets} onClick={() => {
-                    onClick(hide);
-                    setHide(!hide)
-                  }}>
-                    <svg id="Capa_1" enable-background="new 0 0 551.13 551.13" height="512" viewBox="0 0 551.13 551.13" width="512" xmlns="http://www.w3.org/2000/svg">
-                      <path d="m361.679 275.565-223.896 223.897v51.668l275.565-275.565-275.565-275.565v51.668z" />
-                    </svg>
-                  </div>
-                ) : ''
-              }
+              <div class={style.cont_btn_open_dets} onClick={() => {
+                onClick(hide);
+                setHide(!hide)
+              }}>
+                <svg id="Capa_1" enable-background="new 0 0 551.13 551.13" height="512" viewBox="0 0 551.13 551.13" width="512" xmlns="http://www.w3.org/2000/svg">
+                  <path d="m361.679 275.565-223.896 223.897v51.668l275.565-275.565-275.565-275.565v51.668z" />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
@@ -92,5 +157,7 @@ const RecipeMenu = ({ image, title, flavours = [], styles = [], sizes = [], onCl
     </div>
   );
 }
+
+RecipeMenu = connect(null, { addProduct })(RecipeMenu);
 
 export default RecipeMenu;

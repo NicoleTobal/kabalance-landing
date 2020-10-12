@@ -1,12 +1,12 @@
 .home {
-	padding: 56px 20px 0;
+	padding: 56px 0 0;
 	min-height: 100%;
   width: 100%;
   text-align: center;
 }
 
 .personalPhoto {
-  height: 370px;
+  height: 385px;
 }
 
 .separator {
@@ -22,17 +22,27 @@ i {
 
 .social {
   position: relative;
-  height: 800px;
-  margin: 45px 0;
+  height: 880px;
+  padding: 40px 0px;
 }
 
-.home h1 i {
+.home .content h1 {
   margin: 50px 0px auto;
-  font-size: 1.5rem;
+  font-size: 2.3rem;
+  color: white;
+  font-family: Reboto-Light;
 }
 
 .firstSection {
-  height: 1050px;
+  height: 1180px;
+  background-color: #173d2e;
+  transform: skewY(-8deg);
+  margin: 100px 0;
+}
+
+.firstSection .content {
+  transform: skewY(8deg);
+  padding: 100px 0;
 }
 
 .secondSection {
@@ -40,7 +50,8 @@ i {
 }
 
 .secondSection h1 {
-  font-family: Reboto-Regular;
+  color: black;
+  font-family: Reboto-Light;
   font-weight: 100;
   font-size: 2rem;
   margin-top: 50px;
@@ -53,4 +64,14 @@ i {
 
 .reseller img {
   width: 200px;
+}
+
+@media only screen and (max-width: 600px) {
+  .logo {
+    height: 103px;
+  }
+
+  .secondSection {
+    padding: 0 30px;
+  }
 }

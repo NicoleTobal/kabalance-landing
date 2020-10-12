@@ -1,12 +1,15 @@
 import { h, createRef } from 'preact';
 import style from './style.css';
+import { connect } from 'react-redux';
+import { selectCity } from '../../../stores/cartStore';
 
-const CountrySelection = ({ onCountrySelect }) => {
+let CountrySelection = ({ selectCity, onCountrySelect }) => {
   const countrySelectionRef = createRef();
   const onClick = (e) => {
     countrySelectionRef.current.classList.add("animate__animated");
     countrySelectionRef.current.classList.add("animate__fadeOutLeft");
     countrySelectionRef.current.classList.add("animate__normal");
+    selectCity(e.target.innerText);
     setTimeout(() => onCountrySelect(e), 500);
   };
   return (
@@ -27,5 +30,7 @@ const CountrySelection = ({ onCountrySelect }) => {
     </div>
   );
 }
+
+CountrySelection = connect(null, { selectCity })(CountrySelection);
 
 export default CountrySelection;

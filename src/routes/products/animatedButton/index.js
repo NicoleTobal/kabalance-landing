@@ -1,10 +1,10 @@
 import { h } from 'preact';
 import style from './style';
 
-const AnimatedButton = ({ }) => {
+const AnimatedButton = ({ text, extraClass }) => {
   return (
     <div class={style.container}>
-      <button class={style.btn} href="#"><p>PEDIR</p></button>
+      <button class={`${style.btn} ${style[extraClass]}`} href="#"><p>{text}</p></button>
     </div>
   );
 }

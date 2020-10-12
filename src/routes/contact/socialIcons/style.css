@@ -27,7 +27,7 @@
   height: 2.5em;
   font-size: 2.25em;
   text-decoration: none;
-  background: #565656;
+  background: #D8D9DB;
   color: #838383;
   text-align: center;
   position: relative;
@@ -45,8 +45,7 @@
           transform: translateZ(0px);
 }
 .sociallink:hover, .sociallink:focus, .sociallink:active {
-  background: #2B6845;
-  color: #fff;
+  background: #fff;
   z-index: 1;
   box-shadow: 0 0 1.125em 0 rgba(0, 0, 0, 0.5);
   -webkit-transform: scale(1.2);

@@ -59,3 +59,46 @@ input[type=checkbox], input[type=radio] {
 input[type=radio]:checked {
   background: green;
 }
+
+.dropdown-menu {
+  border-radius: 0;
+  border: none;
+  background-color: #eff0ea;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown-menu a {
+  font-family: Reboto-Light;
+}
+
+/****** MATERIALIZE ************/
+
+ul.stepper .step.active::before, ul.stepper .step.done::before {
+  background-color: #2B6845;
+}
+
+.tabs .tab a.active, .tabs .tab a:focus, .tabs .tab a:hover {
+  background-color: #173d2e;
+  color: white;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+  background-color: #173d2e;
+  color: white;
+}
+
+.tabs .tab a {
+  color: #173d2e;
+  background-color: #d8d9db;
+}
+
+.tabs .tab a:hover {
+  background-color: #E8CEBB;
+  color: white;
+  text-decoration: none;
+}
+
+.tabs {
+  background-color: transparent;
+}

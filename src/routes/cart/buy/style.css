@@ -1,0 +1,49 @@
+.btn,
+.btn-large,
+.btn-small,
+.btn-flat {
+   border-radius: 4px;
+   font-weight: 500;
+}
+
+button {
+  margin: 20px;
+  padding: 11px 90px;
+  background-color: #2B6845;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+}
+
+a {
+  cursor: pointer;
+}
+
+button:hover, button:focus, button:visited, button:active {
+  background-color: #E8CEBB;
+  border: none !important;
+  outline: none;
+}
+
+.alignCenter {
+  text-align: right;
+}
+
+.buyCartContainer {
+  padding: 62px 130px 0;
+  font-family: Reboto-Light;
+}
+
+.buyCartContainer input {
+  font-family: Reboto-Light;
+  text-align: left;
+}
+
+.stepTitle {
+  font-family: Reboto-Bold;
+  text-transform: uppercase;
+  text-align: left;
+  margin: 0;
+}

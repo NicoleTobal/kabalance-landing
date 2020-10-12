@@ -10,6 +10,11 @@
   z-index: 20;
 }
 
+.header nav {
+  box-shadow: none;
+  background-color: #f1f2ec;
+}
+
 .header h1 {
 	float: left;
 	margin: 0;
@@ -52,6 +57,7 @@
   position: absolute;
   top: 15px;
   right: 5%;
+  display: flex;
 }
 
 .flags img {
@@ -73,11 +79,32 @@
 }
 
 .cart {
-  padding: 0px 2px 4px;
+  padding: 3px 12px 1px 0px;
   height: 26px;
   cursor: pointer;
 }
 
 .cart:hover {
   filter: contrast(0.1);
+}
+
+.ordersNumber {
+  height: 15px;
+  width: 15px;
+  border-radius: 20px;
+  margin: 6px 8px 0 0;
+  display: table-cell;
+  vertical-align: middle;
+  background-color: #E8CEBB;
+  position: absolute;
+  right: 90px;
+  top: -8px;
+  font-size: 10px;
+}
+
+.flags p {
+  line-height: 2;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  font-family: Reboto-Regular;
 }

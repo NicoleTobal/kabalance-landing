@@ -29,9 +29,13 @@
   },
   "dependencies": {
     "animate.css": "^4.1.1",
+    "materialize-css": "^1.0.0-rc.2",
     "preact": "^10.3.2",
+    "preact-context": "^1.1.4",
     "preact-render-to-string": "^5.1.4",
-    "preact-router": "^3.2.1"
+    "preact-router": "^3.2.1",
+    "react-redux": "^7.2.1",
+    "redux": "^4.0.5"
   },
   "jest": {
     "preset": "jest-preset-preact",

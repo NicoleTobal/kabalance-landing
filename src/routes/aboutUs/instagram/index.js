@@ -8,7 +8,7 @@ const publications = [
     url: "https://www.instagram.com/p/CEFFRY1nefW/"
   },
   {
-    image: "https://instagram.fccs3-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/117932179_913103629185385_5677106351613530101_n.jpg?_nc_ht=instagram.fccs3-1.fna.fbcdn.net&_nc_cat=101&_nc_ohc=eNaJqAyawn8AX8yr-Xj&oh=d0476390fa880b78fcb31be19250ccac&oe=5F6B6C7E",
+    image: "https://instagram.fccs3-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/117817578_347204179642111_7944427540396704557_n.jpg?_nc_ht=instagram.fccs3-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=4R5mf8_BN_0AX-461vk&oh=e149c0f68a8eb0c5c2f3d2db036baa2c&oe=5F6DA71B",
     url: "https://www.instagram.com/p/CEDNUhgHVrR/"
   },
   {

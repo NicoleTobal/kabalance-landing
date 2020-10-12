@@ -2,11 +2,13 @@ import { h, Component } from 'preact';
 import style from './style';
 import RecipeMenu from './recipeMenu';
 import CountrySelection from './countrySelection';
+import { connect } from 'react-redux';
 
 const productList = [
   {
-    image: "https://instagram.fccs3-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/117171261_173750064193077_8978181092544129288_n.jpg?_nc_ht=instagram.fccs3-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=L6U3HWvt3hoAX8-W5mE&oh=048656fc0d7ece8eb7f61a772431806d&oe=5F69D0CD",
+    image: "https://instagram.fccs3-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/108121621_383700135925484_2496260514079274856_n.jpg?_nc_ht=instagram.fccs3-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=MwcEf-QybBAAX9DZRAS&oh=13e1aa8b00ad999db85645f0b2ae3d44&oe=5F6C5775",
     title: "Dulce de leche",
+    price: 5,
     flavours: [],
     styles: [],
     sizes: []
@@ -14,27 +16,30 @@ const productList = [
   {
     image: "https://instagram.fccs3-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/108121621_383700135925484_2496260514079274856_n.jpg?_nc_ht=instagram.fccs3-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=MwcEf-QybBAAX9DZRAS&oh=13e1aa8b00ad999db85645f0b2ae3d44&oe=5F6C5775",
     title: "Parlova",
+    price: 10,
     flavours: [],
     styles: ['Normal', 'Sugar free', 'Vegana'],
     sizes: ['Pequeño', 'Grande']
   },
   {
-    image: "https://instagram.fccs3-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/117171261_173750064193077_8978181092544129288_n.jpg?_nc_ht=instagram.fccs3-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=L6U3HWvt3hoAX8-W5mE&oh=048656fc0d7ece8eb7f61a772431806d&oe=5F69D0CD",
+    image: "https://instagram.fccs3-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/108121621_383700135925484_2496260514079274856_n.jpg?_nc_ht=instagram.fccs3-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=MwcEf-QybBAAX9DZRAS&oh=13e1aa8b00ad999db85645f0b2ae3d44&oe=5F6C5775",
     title: "Marquesa",
+    price: 12,
     flavours: ["Arequipe", "Limón", "Chocolate", "Coco"],
     styles: ['Normal', 'Gluten free', 'Sugar free'],
     sizes: ['Pequeño', 'Mediano', 'Grande']
   },
   {
-    image: "https://instagram.fccs3-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/117171261_173750064193077_8978181092544129288_n.jpg?_nc_ht=instagram.fccs3-1.fna.fbcdn.net&_nc_cat=109&_nc_ohc=L6U3HWvt3hoAX8-W5mE&oh=048656fc0d7ece8eb7f61a772431806d&oe=5F69D0CD",
+    image: "https://instagram.fccs3-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/108121621_383700135925484_2496260514079274856_n.jpg?_nc_ht=instagram.fccs3-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=MwcEf-QybBAAX9DZRAS&oh=13e1aa8b00ad999db85645f0b2ae3d44&oe=5F6C5775",
     title: "Oblea",
+    price: 3,
     flavours: ["Chocolate", "Coco", "Vainilla", "Matcha", "Taro", "Dulce de leche", "Algodón de azucar", "Café"],
     styles: [],
     sizes: []
   }
 ];
 
-export default class Products extends Component {
+class Products extends Component {
 
   constructor(props) {
     super(props);
@@ -107,7 +112,8 @@ export default class Products extends Component {
   }
 
 	render() {
-    if (!this.state.countrySelected) {
+    const { city } = this.props;
+    if (city === '' && !this.state.countrySelected) {
       return <CountrySelection onCountrySelect={e => this.onCountrySelect(e)} />;
     }
 		return (
@@ -121,6 +127,7 @@ export default class Products extends Component {
               <RecipeMenu
                 image={product.image}
                 title={product.title}
+                price={product.price}
                 isActive={true}
                 flavours={product.flavours}
                 sizes={product.sizes}
@@ -161,3 +168,5 @@ export default class Products extends Component {
     );
   }
 }
+
+export default connect(state => ({ city: state.city }), null)(Products);

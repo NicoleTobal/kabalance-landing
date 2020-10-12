@@ -31,7 +31,7 @@ position: absolute;
 
 .cont_modal {
   width: 250px;
-  height: 500px;
+  height: 450px;
   box-shadow: #2b6845 8px 16px;
   position: relative;
   -webkit-transition: all 0.5s;
@@ -47,7 +47,7 @@ background-color: #D8D9DB;
 .cont_photo {
   position: relative;
   width: 250px;
-  height: 500px;
+  height: 450px;
   overflow: hidden;
   background-color: #4c4e4dc7;
 float: left;
@@ -84,7 +84,7 @@ position: absolute;
 top: 0px;
 left: 240px;
   margin-left: 10px;
-  height: 500px;
+  height: 450px;
   float: left; 
 z-index: 3;
 box-shadow: 1px 1px  20px  -5px  rgba(0,0,0,0.2);
@@ -247,7 +247,7 @@ padding-left: 20px;
 text-align: left;
 padding-right: 15px;
 color: #565656;
-height: 500px;
+height: 450px;
 }
 
 .cont_btn_mas_dets {
@@ -263,14 +263,14 @@ height: 500px;
   position: relative;
   float: left;
   width: 100%;
-  height: 500px;
+  height: 450px;
   overflow: hidden;
 }
 
 .cont_text_det_preparation {
   position: relative;
   width: 250px;
-  height: 500px;
+  height: 450px;
   margin-top: 50px;
 }
 
@@ -292,13 +292,13 @@ height: 500px;
 }
 .cont_modal_active > .cont_text_ingredients{
   width: 250px;
-  height: 500px;
+  height: 450px;
   left: 240px;
   z-index: 1;
 }
 .cont_modal_active {
   width: 500px;
-  height: 500px;  
+  height: 450px;  
 }
 
 .cont_modal_active > .cont_photo > .cont_mins > .sub_mins {
@@ -359,10 +359,23 @@ height: 500px;
   width: 80px;
   border-radius: 6px;
   margin-top: 20px;
+  padding: 6px;
+}
+
+.quantity span {
+  cursor: pointer;
+  font-family: Reboto-Light;
+}
+.quantity p {
+  font-family: Reboto-Light;
 }
 
 .orderData p {
   margin: 0;
+}
+
+.orderData .price {
+  margin-top: 10px;
 }
 
 .cont_text_det_preparation button {
@@ -387,10 +400,84 @@ height: 500px;
 }
 
 .options span {
-  height: 17px;
-  width: 17px;
-  position: absolute;
-  left: 16px;
-  background-color: #ffffff;
+  height: 12px;
+  width: 12px;
   border-radius: 20px;
+  float: left;
+  margin: 6px 8px 0 0;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.options span.active {
+  background-color: #E8CEBB;
+}
+
+.optionsRow {
+  display: flex;
+  justify-content: center;
+  box-shadow: -8px 8px 1px -2px #286141;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+
+.optionsRow .title {
+  margin: 0;
+  /* background-color: #2B6845;
+  color: white; */
+  padding: 5px 5px;
+  font-family: Reboto-Regular;
+  width: 85px;
+  letter-spacing: 1px;
+  font-size: 15px;
+  color: #173d2e;
+  background-color: transparent;
+}
+
+.optionsRow .option {
+  margin: 0;
+  padding: 5px 10px;
+  font-family: Reboto-Light;
+  cursor: pointer;
+  background-color: #ffffff;
+  width: 130px;
+}
+
+.orderData button {
+  background-color: #173d2e;
+  letter-spacing: 3px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+  padding: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.disabled span {
+  color: lightgray;
+}
+
+.disabled button,
+.disabled button:hover,
+.disabled button:visited,
+.disabled button:focus {
+  cursor: auto;
+  background-color: gray;
 }
