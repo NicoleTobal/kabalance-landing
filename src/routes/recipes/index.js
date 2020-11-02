@@ -1,10 +1,13 @@
 import { h } from 'preact';
 import style from './style';
+import {FormattedMessage} from "react-intl";
 
 const Recipes = () => {
   return (
     <div class={style.recipes}>
-      <h2>Próximamente...</h2>
+        <FormattedMessage id="titleRecipes">
+            {message => <h2>"{message}"</h2>}
+        </FormattedMessage>
     </div>
   );
 }

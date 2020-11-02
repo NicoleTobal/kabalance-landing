@@ -16,19 +16,22 @@ import BuyCart from '../routes/cart/buy';
 export default class App extends Component {
   componentDidMount() {
     //cartStore.dispatch({ type: 'RESET' });
+
   }
 
 	render() {
 		return (
       <Provider store={cartStore}>
         <div id="app">
-          <Header />
+          <Header
+            selectLang={this.props.selectLang}
+          />
           <Router>
-            <Home path="/" />
-            <Products path="/products" user="me" />
+            <Home selectLang={this.props.selectLang} path="/" />
+            <Products path="/products" user="me" productsLang={this.props.language} />
             <AboutUs path="/aboutUs" />
             <Recipes path="/recipes" />
-            <Cart path="/cart" />
+            <Cart path="/cart" language={this.props.language} />
             <BuyCart path="/buy" />
           </Router>
         </div>

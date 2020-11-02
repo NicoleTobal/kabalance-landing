@@ -3,6 +3,7 @@ import style from './style';
 import Instagram from '../aboutUs/instagram';
 import AnimatedButton from '../products/animatedButton';
 import Contact from '../contact';
+import {FormattedMessage} from "react-intl";
 
 const resellers = [
   {
@@ -19,22 +20,27 @@ const resellers = [
 
 const Home = (props) => (
   <div>
-    {console.log(props)}
     <div id="home" class={style.home}>
       <div class={style.personalPhoto} />
       <div class={style.separator} />
       <img class={style.logo} src="/assets/images/logo-black.png" />
       <div class={style.firstSection}>
-        <div class={style.content}> 
-          <h1>Este es un texto que simula ser el lema principal de Kabalance"</h1>
+        <div class={style.content}>
+          <FormattedMessage id="phrase">
+            {message => <h1>"{message}"</h1>}
+          </FormattedMessage>
           <div class={style.social}>
             <Instagram />
           </div>
-          <AnimatedButton text="PEDIR" onClick={() => {}} />
+          <FormattedMessage id="btnOrder">
+            {message => <AnimatedButton text={message} onClick={() => {}} />}
+          </FormattedMessage>
         </div>
       </div>
       <div class={style.secondSection}>
-        <h1>Encuentranos también en...</h1>
+        <FormattedMessage id="txtFindUs">
+          {message => <h1>"{message}"</h1>}
+        </FormattedMessage>
         <div class={`${style.resellers} row`}>
           {
             resellers.map((reseller, index) => (
