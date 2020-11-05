@@ -87,11 +87,17 @@ export const textSiteContent = {
         'btnEmail': "Email",
         'btnMobilePayment': "Pago Móvil",
         'btnTransfer': "Transferencia",
-        'btnCrypto': "Cryptos",
+        'btnCrypto': "Cryptomonedas",
         'btnCreditCard': "Crédito",
         'btnToPay': "Pagar",
         'txtAmountBs': 'Bs',
-        'txtCodRef': 'Código de Referencia'
+        'txtCodRef': 'Código de Referencia',
+        'txtNames': 'Nombre',
+        'txtSurnames': 'Apellidos',
+        'txtCard': 'Tarjeta',
+        'txtExp': 'Exp',
+        'txtCVV': 'CVV',
+        'txtQuotation': 'Cotización'
 
     },
     'en-US': {
@@ -181,10 +187,17 @@ export const textSiteContent = {
         'btnEmail': "Email",
         'btnMobilePayment': "Mobile Payment",
         'btnTransfer': "Transfer",
-        'btnCrypto': "Cryptos",
+        'btnCrypto': "Cryptocurrency",
         'btnCreditCard': "Credit",
         'btnToPay': "Pay",
         'txtAmountBs': 'Bs',
-        'txtCodRef': 'Reference Code'
+        'txtCodRef': 'Reference Code',
+        'txtNames': 'Names',
+        'txtSurnames': 'Lastnames',
+        'txtCard': 'Card',
+        'txtExp': 'Exp',
+        'txtCVV': 'CVV',
+        'txtQuotation': 'Quotation'
+
     },
 }

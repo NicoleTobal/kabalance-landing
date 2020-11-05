@@ -4,7 +4,7 @@ import {FormattedMessage} from "react-intl";
 
 const PaymentEmail = () => {
     return (
-        <div id="paymentEmail">
+        <div className="container" id="paymentEmail">
             <h5>Pago Email</h5>
             <div className="row">
                 <div className="col-sm-6">
