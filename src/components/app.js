@@ -16,7 +16,6 @@ import BuyCart from '../routes/cart/buy';
 export default class App extends Component {
   componentDidMount() {
     //cartStore.dispatch({ type: 'RESET' });
-
   }
 
 	render() {

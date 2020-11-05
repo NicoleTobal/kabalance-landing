@@ -80,7 +80,19 @@ export const textSiteContent = {
         'txtNotes' : "Notas",
         'btnContinue': "Continuar",
         'btnDelivery': "Entrega",
-        'btnPickup': "Recoger"
+        'btnPickup': "Recoger",
+
+        // ------------------------------------------
+        // ------------ PAYMENTS CONTENT ------------
+        'btnEmail': "Email",
+        'btnMobilePayment': "Pago Móvil",
+        'btnTransfer': "Transferencia",
+        'btnCrypto': "Cryptos",
+        'btnCreditCard': "Crédito",
+        'btnToPay': "Pagar",
+        'txtAmountBs': 'Bs',
+        'txtCodRef': 'Código de Referencia'
+
     },
     'en-US': {
         'app.title': "Web site in english",
@@ -162,6 +174,17 @@ export const textSiteContent = {
         'txtNotes' : "Notas",
         'btnContinue': "Continue",
         'btnDelivery': "Delivery",
-        'btnPickup': "Pickup"
+        'btnPickup': "Pickup",
+
+        // ------------------------------------------
+        // ------------ PAYMENTS CONTENT ------------
+        'btnEmail': "Email",
+        'btnMobilePayment': "Mobile Payment",
+        'btnTransfer': "Transfer",
+        'btnCrypto': "Cryptos",
+        'btnCreditCard': "Credit",
+        'btnToPay': "Pay",
+        'txtAmountBs': 'Bs',
+        'txtCodRef': 'Reference Code'
     },
 }
