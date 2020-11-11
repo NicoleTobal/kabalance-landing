@@ -3,7 +3,7 @@ import style from '../style.css';
 import PaymentEmail from "./paymentEmail";
 import PaymentMobile from "./paymentMobile";
 import PaymentTransfer from "./paymentTransfer";
-import PaymentCrypto from "./paymentCrypto";
+import PaymentCryptos from "./paymentCrypto";
 import PaymentCredit from "./paymentCredit";
 import {FormattedMessage} from "react-intl";
 import {useState, useEffect} from 'preact/hooks';
@@ -87,7 +87,7 @@ let PaymentsMethods = ({}) => {
             {showPayEmail && <PaymentEmail/>}
             {showPayMobile && <PaymentMobile/>}
             {showPayTransfer && <PaymentTransfer/>}
-            {showPayCrypto && <PaymentCrypto/>}
+            {showPayCrypto && <PaymentCryptos/>}
             {showPayCredit && <PaymentCredit/>}
         </div>
     );

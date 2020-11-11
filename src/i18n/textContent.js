@@ -101,6 +101,7 @@ export const textSiteContent = {
         'txtCI': 'Cédula de Identidad',
         'txtPhone': 'Teléfono',
         'txtAmount': 'Cantidad',
+        'txtNotify': 'Notificar',
 
         // Validations
         'nameReq': 'Nombre requerido',
@@ -213,6 +214,7 @@ export const textSiteContent = {
         'txtCI': 'Identification Card',
         'txtPhone': 'Phone',
         'txtAmount': 'Amount',
+        'txtNotify': 'Notify',
 
         // Validations
         'nameReq': 'Name required',
