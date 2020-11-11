@@ -1,6 +1,10 @@
 import { h } from 'preact';
-import style from '../../style.css';
 import {FormattedMessage} from "react-intl";
+
+
+const doPayment = async () => {
+    await listPayments(); // Temporally list Payments here
+}
 
 const PaymentEmail = () => {
     return (
@@ -9,8 +13,8 @@ const PaymentEmail = () => {
             <div className="row">
                 <div className="col-sm-6">
                     <div className="input-field col s12">
-                        <input id="id_address" name="address" value="usuario@email.com" type="text" className="validate" required/>
-                        <button onClick={() => setActiveTab(1)}>
+                        <input id="id_address_pm" name="address_pm" value="usuario@email.com" type="text" className="validate" required/>
+                        <button onClick={() => { doPayment() } }>
                             <FormattedMessage id="btnToPay">
                                 {message => { message } }.
                             </FormattedMessage>

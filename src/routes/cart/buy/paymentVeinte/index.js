@@ -10,7 +10,7 @@ import {useState, useEffect} from 'preact/hooks';
 import {textSiteContent} from "../../../../i18n/textContent";
 
 let PaymentsMethods = ({}) => {
-    const [showPayEmail, setShowPayEmail] = useState(false);
+    const [showPayEmail, setShowPayEmail] = useState(true);
     const [showPayMobile, setShowPayMobile] = useState(false);
     const [showPayTransfer, setShowPayTransfer] = useState(false);
     const [showPayCrypto, setShowPayCrypto] = useState(false);

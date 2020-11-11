@@ -90,15 +90,27 @@ export const textSiteContent = {
         'btnCrypto': "Cryptomonedas",
         'btnCreditCard': "Crédito",
         'btnToPay': "Pagar",
-        'txtAmountBs': 'Bs',
+        'txtCoin': 'Moneda',
         'txtCodRef': 'Código de Referencia',
         'txtNames': 'Nombre',
         'txtSurnames': 'Apellidos',
         'txtCard': 'Tarjeta',
         'txtExp': 'Exp',
         'txtCVV': 'CVV',
-        'txtQuotation': 'Cotización'
+        'txtQuotation': 'Cotización',
+        'txtCI': 'Cédula de Identidad',
+        'txtPhone': 'Teléfono',
+        'txtAmount': 'Cantidad',
 
+        // Validations
+        'nameReq': 'Nombre requerido',
+        'surnamesReq': 'Apellidos requeridos',
+        'emailReq': 'Email requerido',
+        'phoneReq': 'Teléfono requerido',
+        'phonePat': 'Teléfono no válido',
+        'ciReq': 'Cédula requerida',
+        'amountReq': 'Monto requerido',
+        'currencyReq': 'Moneda requerida'
     },
     'en-US': {
         'app.title': "Web site in english",
@@ -190,14 +202,26 @@ export const textSiteContent = {
         'btnCrypto': "Cryptocurrency",
         'btnCreditCard': "Credit",
         'btnToPay': "Pay",
-        'txtAmountBs': 'Bs',
+        'txtCoin': 'Coin',
         'txtCodRef': 'Reference Code',
         'txtNames': 'Names',
         'txtSurnames': 'Lastnames',
         'txtCard': 'Card',
         'txtExp': 'Exp',
         'txtCVV': 'CVV',
-        'txtQuotation': 'Quotation'
+        'txtQuotation': 'Quotation',
+        'txtCI': 'Identification Card',
+        'txtPhone': 'Phone',
+        'txtAmount': 'Amount',
 
+        // Validations
+        'nameReq': 'Name required',
+        'surnamesReq': 'Apellidos required',
+        'emailReq': 'Email required',
+        'phoneReq': 'Phone required',
+        'phonePat': 'Phone not valid',
+        'ciReq': 'Identity card required',
+        'amountReq': 'Amount required',
+        'currencyReq': 'Currency required'
     },
 }
