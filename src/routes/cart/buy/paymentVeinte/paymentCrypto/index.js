@@ -6,6 +6,7 @@ import litecoin from '../../../../../assets/images/cryptos/litecoin.jpeg';
 import dash from '../../../../../assets/images/cryptos/dash.jpeg';
 import petro from '../../../../../assets/images/cryptos/petro.jpeg';
 import ether from '../../../../../assets/images/cryptos/ether.jpeg';
+import { paymentCrypto } from "../../../../../payments/paybridge/PaybridgeOperations";
 import { useForm } from "react-hook-form";
 import { useState } from "preact/hooks";
 
@@ -15,16 +16,30 @@ const cryptos = [
     {id: 2, name: 'litecoin', currency: 'ltc',src: litecoin, hash: '2dFW67JHasdqqf415c13f11cd212'},
     {id: 3, name: 'dash', currency: 'dash',src: dash, hash: '7JHasdqq1cd2122dFW6f413f115c'},
     {id: 4, name: 'petro', currency: 'petro',src: petro, hash: '1cd21W67JHasdqq5c13f122dF'},
-    {id: 5, name: 'ether', currency: 'eth',src: ether, hash: 'f411cd2122dFW67Jsdqqf415c13f1Ha'},
+    {id: 5, name: 'ether', currency: 'eth',src: ether, hash: 'f411cd2122dFW67Jsdqqf415c13f1Ha'}
 ];
 
 
 const PaymentCryptos = () => {
     const { register, handleSubmit, watch, errors } = useForm();
-    const [coin, setCoin] = useState('all');
+    const [coin, setCoin] = useState({
+        id: 6,
+        name: 'all',
+        currency: 'btc',
+        hash: '#######',
+        src: bitcoin
+    });
+
     const handleCoin = (coin) => {
         console.log('Valor clickeado: ', coin.name)
-        setCoin(coin.name);
+        setCoin({
+            id: coin.id,
+            name: coin.name,
+            currency: coin.currency,
+            hash: coin.hash,
+            src: coin.src
+        });
+        console.log('El coin es', coin)
     }
 
     const onSubmit = async data => {
@@ -36,14 +51,14 @@ const PaymentCryptos = () => {
                 surname: data.surname,
                 ci: data.ci
             },
-            pay_type: "crypto",
+            pay_type: "crypto"
         }
-        console.log('Cuerpo', body)
-        //const response = await paymentMobile(body);
+
+        console.log('El Body -> ', body)
+        const response = await paymentCrypto(body);
     };
 
-
-    if (coin === 'all') {
+    if (coin.name === 'all') {
         return (
             <div className="container" id="paymentCrypto">
                 <h5>Pago Cryptomonedas</h5>
@@ -74,15 +89,15 @@ const PaymentCryptos = () => {
     } else {
         return (
             <div className="container" id="paymentCrypto">
+                <h5>Pago en {coin.name}</h5>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input id="id_currency_cr" name="currency" type="hidden" className="validate"
-                           ref={register} value={coin} />
+                           ref={register} value={coin.currency} />
                     <div className="row">
                         <div className="col s12">
                             <div className="card with-header ">
                                 <div className="card-content">
-                                    <span className="card-title">Para el Pago en <b>{coin}</b></span>
-                                    <p>Hash: <b>1k1h38Schf92k34gVx87s9Fb8d87</b></p>
+                                    <p>Hash: <b>{coin.hash}</b></p>
                                 </div>
                             </div>
                         </div>

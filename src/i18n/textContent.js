@@ -102,6 +102,10 @@ export const textSiteContent = {
         'txtPhone': 'Teléfono',
         'txtAmount': 'Cantidad',
         'txtNotify': 'Notificar',
+        'txtTransfer': 'Transferencia',
+        'txtAccountNumber': 'Número de cuenta',
+        'txtPayType' : "Tipo de pago",
+        'txtAccountType' : "Tipo de cuenta",
 
         // Validations
         'nameReq': 'Nombre requerido',
@@ -111,7 +115,11 @@ export const textSiteContent = {
         'phonePat': 'Teléfono no válido',
         'ciReq': 'Cédula requerida',
         'amountReq': 'Monto requerido',
-        'currencyReq': 'Moneda requerida'
+        'currencyReq': 'Moneda requerida',
+        'sourceReq': 'No. de cuenta requerido',
+        'payTypeReq' : "Tipo de pago requerido",
+        'accountTypeReq' : "Tipo de cuenta requerida"
+
     },
     'en-US': {
         'app.title': "Web site in english",
@@ -215,6 +223,10 @@ export const textSiteContent = {
         'txtPhone': 'Phone',
         'txtAmount': 'Amount',
         'txtNotify': 'Notify',
+        'txtTransfer': 'Transfer',
+        'txtAccountNumber': 'Account number',
+        'txtPayType' : "Payment Tipe",
+        'txtAccountType' : "Account type",
 
         // Validations
         'nameReq': 'Name required',
@@ -224,6 +236,9 @@ export const textSiteContent = {
         'phonePat': 'Phone not valid',
         'ciReq': 'Identity card required',
         'amountReq': 'Amount required',
-        'currencyReq': 'Currency required'
-    },
+        'currencyReq': 'Currency required',
+        'sourceReq': 'Account numbre required',
+        'payTypeReq' : 'Payment type required',
+        'accountTypeReq' : "Account tipe required"
+    }
 }

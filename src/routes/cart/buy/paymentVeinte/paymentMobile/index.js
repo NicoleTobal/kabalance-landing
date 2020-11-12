@@ -72,7 +72,6 @@ export default function PaymentMobile() {
                             </div>
                         </div>
                     </div>
-
                     <div className="row">
                         <div className="col s12">
                             <div className="input-field col s4">
@@ -141,7 +140,6 @@ export default function PaymentMobile() {
                             </div>
                         </div>
                     </div>
-
                     <div className="row">
                         <div className="col s12">
                             {/* <button onClick={ async () => { await doPayment() } }>*/}

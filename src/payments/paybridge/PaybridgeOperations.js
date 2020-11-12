@@ -63,7 +63,6 @@ export const paymentMobile = async (body) => {
     try {
         const fetchToken = await getToken()
         const token = fetchToken.data.token
-        console.log('Body', body)
 
         let response = await axios({
             method: 'post',
@@ -75,6 +74,83 @@ export const paymentMobile = async (body) => {
             data: body
         })
         console.log('The Mobile Payment was successful!', response)
+        return response;
+    } catch (err) {
+        return{ error: err };
+    }
+};
+
+
+/**
+ * Do the Mobile Payment
+ * @param body
+ * @returns {Promise<{error: *}>}
+ */
+export const paymentCrypto = async (body) => {
+    try {
+        const fetchToken = await getToken()
+        const token = fetchToken.data.token
+
+        let response = await axios({
+            method: 'post',
+            url: `${PAYBRIDGE_URL}/api/pay/crypto/`,
+            headers: {
+                'Authorization': `Token ${token}`,
+                'Content-Type': 'application/json'
+            },
+            data: body
+        })
+        console.log('The Crypto Payment was successful!', response)
+        return response;
+    } catch (err) {
+        return{ error: err };
+    }
+};
+
+/**
+ * Do the Mobile Payment
+ * @param body
+ * @returns {Promise<{error: *}>}
+ */
+export const bankList = async () => {
+    try {
+        const fetchToken = await getToken()
+        const token = fetchToken.data.token
+
+        let response = await axios({
+            method: 'get',
+            url: `${PAYBRIDGE_URL}/api/banks/`,
+            headers: {
+                'Authorization': `Token ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        return response;
+    } catch (err) {
+        return{ error: err };
+    }
+};
+
+/**
+ * Do the Transfer Payment
+ * @param body
+ * @returns {Promise<{error: *}>}
+ */
+export const paymentTransfer = async (body) => {
+    try {
+        const fetchToken = await getToken()
+        const token = fetchToken.data.token
+
+        let response = await axios({
+            method: 'post',
+            url: `${PAYBRIDGE_URL}/api/pay/`,
+            headers: {
+                'Authorization': `Token ${token}`,
+                'Content-Type': 'application/json'
+            },
+            data: body
+        })
+        console.log('The Transfer Payment was successful!', response)
         return response;
     } catch (err) {
         return{ error: err };
