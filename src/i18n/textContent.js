@@ -84,8 +84,9 @@ export const textSiteContent = {
 
         // ------------------------------------------
         // ------------ PAYMENTS CONTENT ------------
+        'txtPaymentData': "Datos para el pago",
         'btnEmail': "Email",
-        'btnMobilePayment': "Pago Móvil",
+        'txtMobilePayment': "Pago Móvil",
         'btnTransfer': "Transferencia",
         'btnCrypto': "Cryptomonedas",
         'btnCreditCard': "Crédito",
@@ -106,6 +107,7 @@ export const textSiteContent = {
         'txtAccountNumber': 'Número de cuenta',
         'txtPayType' : "Tipo de pago",
         'txtAccountType' : "Tipo de cuenta",
+        'txtYourEmail' : "Su Email",
 
         // Validations
         'nameReq': 'Nombre requerido',
@@ -205,8 +207,9 @@ export const textSiteContent = {
 
         // ------------------------------------------
         // ------------ PAYMENTS CONTENT ------------
+        'txtPaymentData': "Data for payment",
         'btnEmail': "Email",
-        'btnMobilePayment': "Mobile Payment",
+        'txtMobilePayment': "Mobile Payment",
         'btnTransfer': "Transfer",
         'btnCrypto': "Cryptocurrency",
         'btnCreditCard': "Credit",
@@ -227,6 +230,7 @@ export const textSiteContent = {
         'txtAccountNumber': 'Account number',
         'txtPayType' : "Payment Tipe",
         'txtAccountType' : "Account type",
+        'txtYourEmail' : "Your Email",
 
         // Validations
         'nameReq': 'Name required',

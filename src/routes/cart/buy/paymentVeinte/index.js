@@ -66,7 +66,7 @@ let PaymentsMethods = ({}) => {
                         {message => <a activeClassName={style.active}
                                        onClick={() => showComponent('payment_email')}> {message}</a>}
                     </FormattedMessage>
-                    <FormattedMessage id="btnMobilePayment">
+                    <FormattedMessage id="txtMobilePayment">
                         {message => <a activeClassName={style.active}
                                        onClick={() => showComponent('payment_mobile')}>{message}</a>}
                     </FormattedMessage>

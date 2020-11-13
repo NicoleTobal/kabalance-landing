@@ -10,7 +10,9 @@ import ReactLoading from 'react-loading';
 
 export default function PaymentMobile() {
     const { register, handleSubmit, watch, errors } = useForm();
+    const [ show, setShow ] = useState('form');
     const onSubmit = async data => {
+        setShow('loading')
         const body = {
             amount: data.amount,
             currency: data.currency,
@@ -25,10 +27,20 @@ export default function PaymentMobile() {
         }
         const response = await paymentMobile(body);
     };
-
+    if (show === 'loading' ) {
+        return (
+                    <div className="progress">
+                        <div className="indeterminate"></div>
+                    </div>
+                )
+    } else if ( show === 'form') {
         return (
             <div className="container" id="paymentPaymentMobile" >
-                <h5>Pago Móvil</h5>
+                <h5>
+                    <FormattedMessage id="txtMobilePayment">
+                        {message => { message }}.
+                    </FormattedMessage>
+                </h5>
                 <form onSubmit={  handleSubmit(onSubmit)  }>
                     <div className="row">
                         <div className="col s12">
@@ -42,7 +54,6 @@ export default function PaymentMobile() {
                             </div>
                         </div>
                     </div>
-
 
                     <div className="row">
                         <div className="col s12">
@@ -155,8 +166,19 @@ export default function PaymentMobile() {
                 </form>
             </div>
         );
+    } else if ( show === 'sent') {
+        return (
+            <div className="container" >
+                <h5>
+                    Sent
+                </h5>
+            </div>
+        );
+    }
+
 
 }
+
 
 /*
 // Activate select
