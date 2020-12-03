@@ -47,7 +47,6 @@ export const listPayments = async (body) => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log('Payments:', response)
         return response;
     } catch (err) {
         return{ error: err };

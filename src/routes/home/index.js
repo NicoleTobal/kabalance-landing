@@ -57,4 +57,8 @@ const Home = (props) => (
 
 );
 
+const mapStateToProps = state => {
+  return {language: state.language.language};
+}
+
 export default Home;

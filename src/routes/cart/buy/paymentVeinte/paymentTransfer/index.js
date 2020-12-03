@@ -22,7 +22,6 @@ const PaymentTransfer = () => {
     });
 
     const handleCoin = (coin) => {
-        console.log('Valor clickeado: ', coin.name)
         setCoin({
             id: coin.id,
             name: coin.name,

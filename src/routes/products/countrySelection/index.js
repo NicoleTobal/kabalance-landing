@@ -1,16 +1,16 @@
 import {h, createRef} from 'preact';
 import style from './style.css';
 import {connect} from 'react-redux';
-import {selectCity} from '../../../stores/cartStore';
 import {FormattedMessage} from "react-intl";
+import {selectCity} from "../../../redux";
 
-let CountrySelection = ({selectCity, onCountrySelect}) => {
+let CountrySelection = (props, { onCountrySelect}) => {
     const countrySelectionRef = createRef();
     const onClick = (e) => {
         countrySelectionRef.current.classList.add("animate__animated");
         countrySelectionRef.current.classList.add("animate__fadeOutLeft");
         countrySelectionRef.current.classList.add("animate__normal");
-        selectCity(e.target.innerText);
+        props.selectCity(e.target.innerText);
         setTimeout(() => onCountrySelect(e), 500);
     };
     return (
@@ -36,6 +36,16 @@ let CountrySelection = ({selectCity, onCountrySelect}) => {
     );
 }
 
-CountrySelection = connect(null, {selectCity})(CountrySelection);
+const mapStateToProps = state => {
+    return {city: state.cart.city};
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        selectCity: citySelected => dispatch(selectCity(citySelected))
+    }
+}
+
+CountrySelection = connect(mapStateToProps, mapDispatchToProps)(CountrySelection);
 
 export default CountrySelection;

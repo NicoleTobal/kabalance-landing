@@ -52,7 +52,6 @@ const PaymentCryptos = () => {
             pay_type: "crypto"
         }
 
-        console.log('El Body -> ', body)
         setTimeout(function(){ setShow('sent'); }, 3000);
         //const response = await paymentCrypto(body);
         //setShow('sent');

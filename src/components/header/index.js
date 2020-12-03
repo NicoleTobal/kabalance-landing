@@ -2,9 +2,10 @@ import {h} from 'preact';
 import style from './style.css';
 import {connect} from 'react-redux';
 import {FormattedMessage} from "react-intl";
+import {changeLanguage} from "../../redux/language/languageActions";
 
 
-let Header = ({products, selectLang}) => {
+let Header = (props) => {
     return (
         <header class={style.header}>
             <div class={style.logo}>
@@ -25,16 +26,21 @@ let Header = ({products, selectLang}) => {
                 </FormattedMessage>
             </nav>
             <div class={style.flags}>
-                <a onClick={() => { selectLang('es-ES'); }}>
+                <a onClick={() => {
+                    props.changeLanguage('es-ES');
+                }}>
+                    {/*<a onClick={() => { selectLang('es-ES'); }}>*/}
                     <img src="/assets/images/spain.png"/>
                 </a>
-                <a onClick={() => { selectLang('en-US'); }}>
+                <a onClick={() => {
+                    props.changeLanguage('en-US');
+                }}>
                     <img className={style.disabled} src="/assets/images/united-states.png"/>
                 </a>
 
 
                 <span class={style.ordersNumber}>
-                  {products.reduce((prev, product) => {
+                  {props.products.reduce((prev, product) => {
                       return product.quantity + prev
                   }, 0)}
                 </span>
@@ -52,9 +58,14 @@ let Header = ({products, selectLang}) => {
 };
 
 const mapStateToProps = state => {
-    return {products: state.products};
+    return {products: state.cart.products};
 }
 
-Header = connect(mapStateToProps, null)(Header);
-export default Header;
+const mapDispatchToProps = dispatch => {
+    return {
+        changeLanguage: language => dispatch(changeLanguage(language))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
 

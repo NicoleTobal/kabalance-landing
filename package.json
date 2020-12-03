@@ -42,7 +42,8 @@
     "react-intl": "^5.8.8",
     "react-loading": "^2.0.3",
     "react-redux": "^7.2.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6"
   },
   "jest": {
     "preset": "jest-preset-preact",

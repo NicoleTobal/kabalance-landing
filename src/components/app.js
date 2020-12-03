@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import {h, Component} from 'preact';
 
 import Header from './header';
 
@@ -9,32 +9,34 @@ import AboutUs from '../routes/aboutUs';
 import Router from 'preact-router';
 import Recipes from '../routes/recipes';
 import Cart from '../routes/cart';
-import { Provider } from 'react-redux';
-import cartStore from '../stores/cartStore';
+import {connect, Provider} from 'react-redux';
+import store from '../redux/store'
 import BuyCart from '../routes/cart/buy';
+import {IntlProvider} from "react-intl";
+import {changeLanguage} from "../redux/language/languageActions";
+import {useState} from "preact/hooks";
+import {textSiteContent} from "../i18n/textContent";
 
-export default class App extends Component {
-  componentDidMount() {
-    //cartStore.dispatch({ type: 'RESET' });
-  }
-
-	render() {
-		return (
-      <Provider store={cartStore}>
-        <div id="app">
-          <Header
-            selectLang={this.props.selectLang}
-          />
-          <Router>
-            <Home selectLang={this.props.selectLang} path="/" />
-            <Products path="/products" user="me" productsLang={this.props.language} />
-            <AboutUs path="/aboutUs" />
-            <Recipes path="/recipes" />
-            <Cart path="/cart" language={this.props.language} />
-            <BuyCart path="/buy" />
-          </Router>
-        </div>
-      </Provider>
-		);
-	}
+let App = (props) => {
+    return (
+        <IntlProvider messages={textSiteContent[props.language]} locale={props.language} defaultLocale={props.language}>
+            <div id="app">
+                <Header/>
+                <Router>
+                    <Home path="/"/>
+                    <Products path="/products" user="me"/>
+                    <AboutUs path="/aboutUs"/>
+                    <Recipes path="/recipes"/>
+                    <Cart path="/cart"/>
+                    <BuyCart path="/buy"/>
+                </Router>
+            </div>
+        </IntlProvider>
+    );
 }
+
+const mapStateToProps = state => {
+    return {language: state.language.language};
+}
+
+export default connect(mapStateToProps, null)(App);

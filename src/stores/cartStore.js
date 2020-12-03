@@ -1,3 +1,4 @@
+/*
 import { createStore } from 'redux';
 
 function cart(state = { city: '', products: [] }, action) {
@@ -7,7 +8,7 @@ function cart(state = { city: '', products: [] }, action) {
     case 'SELECT CITY':
       return { ...state, city: action.city };
     case 'EMPTY CART':
-      return { ...state, products: [] };
+       return { ...state, products: [] };
     case 'RESET':
       return { city: '', products: [] };
     default:
@@ -54,13 +55,13 @@ export const changeProductQuantity = (product, amountOfChange) => {
   return newState;
 };
 
-export const selectCity = city => ({
-  type: 'SELECT CITY',
-  city,
-});
+ export const selectCity = city => ({
+   type: 'SELECT CITY',
+   city,
+ });
 
 export const emptyCart = () => ({ type: 'EMPTY CART' });
 
 const cartStore = createStore(cart, {city: '', products: []});
 
-export default cartStore;
+export default cartStore;*/
