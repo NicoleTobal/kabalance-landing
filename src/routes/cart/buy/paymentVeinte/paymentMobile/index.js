@@ -1,18 +1,31 @@
 import React, {h} from 'preact';
 import style from '../../style.css';
-import {FormattedMessage} from 'react-intl';
-import { useForm } from "react-hook-form";
-import { Loading } from "../../../../../components/loading/index";
-import { paymentMobile } from "../../../../../payments/paybridge/PaybridgeOperations";
+import {useForm} from "react-hook-form";
+import {Loading} from "../../../../../components/loading/index";
 import {useEffect, useState} from "preact/hooks";
+import {connect} from "react-redux";
 import ReactLoading from 'react-loading';
+import internationalization from "../../../../../i18n/i18n";
+import { doPaymentMobile, getBank } from "../../../../../redux";
 
 
-export default function PaymentMobile() {
-    const { register, handleSubmit, watch, errors } = useForm();
-    const [ show, setShow ] = useState('form');
-    const onSubmit = async data => {
-        setShow('loading')
+function PaymentMobile(props) {
+    const {register, handleSubmit, watch, errors} = useForm();
+    const [bank, setBank] = useState({
+        accountHolder: '',
+        bank: '',
+        accountNumber: ''
+    });
+    const bankInfo = async () => {
+        const response = await getBank(props.token)
+        setBank({
+            accountHolder: '',
+            bank: '',
+            accountNumber: ''
+        })
+    };
+
+    const onSubmit = data => {
         const body = {
             amount: data.amount,
             currency: data.currency,
@@ -25,114 +38,88 @@ export default function PaymentMobile() {
             pay_type: "pgm",
             source: data.phone
         }
-        const response = await paymentMobile(body);
+        props.doPaymentMobile(body, props.token)
     };
-    if (show === 'loading' ) {
-        return (
-                    <div className="progress">
-                        <div className="indeterminate"></div>
-                    </div>
-                )
-    } else if ( show === 'form') {
-        return (
-            <div className="container" id="paymentPaymentMobile" >
+
+    return props.show ?
+        // Show the Payment Mobile Form
+        (
+            <div className="container" id="paymentPaymentMobile">
                 <h5>
-                    <FormattedMessage id="txtMobilePayment">
-                        {message => { message }}.
-                    </FormattedMessage>
+                    {internationalization("txtEmailPayment")}
                 </h5>
-                <form onSubmit={  handleSubmit(onSubmit)  }>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="row">
                         <div className="col s12">
                             <div className="card with-header ">
                                 <div className="card-content">
                                     <span className="card-title">Datos para el Pago</span>
-                                    <p>Nombre del Cliente: <b>Juan Pérez</b></p>
+                                    <p>Nombre del Cliente: <b>{bank.accountHolder}</b></p>
                                     <p> Banco: <b>Banco Mercantil</b></p>
                                     <p>No. Referencia: <b>01100101110101</b></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div className="row">
                         <div className="col s12">
                             <div className="input-field col s6">
-                                <input id="id_name_pm" name="name" type="text" className="validate" ref={register({required: true, maxLength: 80})} />
+                                <input id="id_name_pm" name="name" type="text" className="validate"
+                                       ref={register({required: true, maxLength: 80})}/>
                                 <label htmlFor="id_name_pm">
-                                    <FormattedMessage id="txtNames">
-                                        {message => { message }}.
-                                    </FormattedMessage>
+                                    {internationalization("txtNames")}
                                 </label>
                                 {errors.name && <span>
-                                    <FormattedMessage id="nameReq">
-                                        {message => {  message }}.
-                                    </FormattedMessage>
+                                    {internationalization("nameReq")}
                                 </span>}
                             </div>
                             <div className="input-field col s6">
-                                <input id="id_surname_pm" name="surname" type="text" className="validate" ref={register({required: true, maxLength: 80})} />
+                                <input id="id_surname_pm" name="surname" type="text" className="validate"
+                                       ref={register({required: true, maxLength: 80})}/>
                                 <label htmlFor="id_surname_pm">
-                                    <FormattedMessage id="txtSurnames">
-                                        {message => {  message }}.
-                                    </FormattedMessage>
+                                    {internationalization("txtSurnames")}
                                 </label>
-                                {errors.surname && <span><FormattedMessage id="surnamesReq">
-                                        {message => { message  }}.
-                                    </FormattedMessage></span>}
+                                {errors.surname && <span> {internationalization("surnamesReq")} </span>}
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col s12">
                             <div className="input-field col s4">
-                                <input id="id_ci_pm" name="ci" type="text" className="validate" ref={register({required: true, minLength: 6})} />
+                                <input id="id_ci_pm" name="ci" type="text" className="validate"
+                                       ref={register({required: true, minLength: 6})}/>
                                 <label htmlFor="id_ci_pm">
-                                    <FormattedMessage id="txtCI">
-                                        {message => { message }}.
-                                    </FormattedMessage>
+                                    {internationalization("txtCI")}
                                 </label>
-                                {errors.ci && <span><FormattedMessage id="ciReq">
-                                        {message => { message }}.
-                                    </FormattedMessage></span>}
+                                {errors.ci && <span> {internationalization("ciReq")} </span>}
                             </div>
                             <div className="input-field col s4">
-                                <input id="id_email_pm" name="email" type="text" className="validate" ref={register({required: true, minLength: 6})} />
+                                <input id="id_email_pm" name="email" type="text" className="validate"
+                                       ref={register({required: true, minLength: 6})}/>
                                 <label htmlFor="id_email_pm">
                                     Email
                                 </label>
-                                {errors.email && <span><FormattedMessage id="emailReq">
-                                        {message => {
-                                            message
-                                        }}.
-                                    </FormattedMessage></span>}
+                                {errors.email && <span> {internationalization("emailReq")} </span>}
                             </div>
-
                             <div className="input-field col s4">
-                                <input id="id_phone_pm" name="phone" type="tel" className="validate" ref={register({required: true, pattern: /[0-9]/, minLength: 6, maxLength: 12})} />
+                                <input id="id_phone_pm" name="phone" type="tel" className="validate"
+                                       ref={register({required: true, pattern: /[0-9]/, minLength: 6, maxLength: 12})}/>
                                 <label htmlFor="id_phone_pm">
-                                    <FormattedMessage id="txtPhone">
-                                        {message => { message }}.
-                                    </FormattedMessage>
+                                    {internationalization("txtPhone")}
                                 </label>
-                                {errors.phone && <span><FormattedMessage id="phonePat">
-                                        {message => { message }}.
-                                    </FormattedMessage></span>}
+                                {errors.phone && <span> {internationalization("phonePat")} </span>}
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col s12">
                             <div className="input-field col s4">
-                                <input id="id_amount" name="amount" type="text" className="validate" ref={register({required: true})}  />
+                                <input id="id_amount" name="amount" type="text" className="validate"
+                                       ref={register({required: true})}/>
                                 <label htmlFor="id_amount">
-                                    <FormattedMessage id="txtAmount">
-                                        {message => { message }}.
-                                    </FormattedMessage>
+                                    {internationalization("txtAmount")}
                                 </label>
-                                {errors.amount && <span><FormattedMessage id="amountReq">
-                                        {message => { message }}.
-                                    </FormattedMessage></span>}
+                                {errors.amount && <span> {internationalization("amountReq")} </span>}
                             </div>
 
                             <div className="input-field col s2">
@@ -140,51 +127,58 @@ export default function PaymentMobile() {
                                         name="currency"
                                         className="browser-default"
                                         defaultValue="bs"
-                                        ref={register({required: true})} >
+                                        ref={register({required: true})}>
                                     <option value="bs">Bs</option>
                                     <option value="cop">COP</option>
                                     <option value="usd">USD</option>
                                 </select>
-                                {errors.currency && <span><FormattedMessage id="currencyReq">
-                                        {message => { message }}.
-                                    </FormattedMessage></span>}
+                                {errors.currency && <span> {internationalization("currencyReq")} </span>}
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col s12">
-                            {/* <button onClick={ async () => { await doPayment() } }>*/}
                             <button type="submit">
-                                <FormattedMessage id="btnToPay">
-                                    {message => {
-                                        message
-                                    }}.
-                                </FormattedMessage>
+                                {internationalization("btnToPay")}
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
-        );
-    } else if ( show === 'sent') {
-        return (
-            <div className="container" >
-                <h5>
-                    Sent
-                </h5>
-            </div>
-        );
-    }
-
-
+        )
+        : props.loading ?
+            // Show Loading of request
+            (
+                <div className="progress">
+                    <div className="indeterminate"></div>
+                </div>
+            )
+            : props.error ?
+                // Show errors if ocurrs an exception
+                (
+                    <h5>{props.data.error}</h5>
+                )
+                :
+                // Show success message
+                (
+                    <h2>Pago efectuado</h2>
+                )
 }
 
 
-/*
-// Activate select
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, options);
-});
-*/
+const mapStateToProps = state => {
+    return {
+        data: state.paybridge.data,
+        show: state.paybridge.show,
+        token: state.paybridge.token
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        doPaymentMobile: (body, token) => dispatch(doPaymentMobile(body, token))
+        //getBank: (token) => dispatch(getBank(token))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentMobile);
 

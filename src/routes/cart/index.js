@@ -3,7 +3,7 @@ import style from './style';
 import AnimatedButton from '../products/animatedButton';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
-import {addProduct} from "../../redux";
+import {addProduct, getToken} from "../../redux";
 import {changeProductQuantity, emptyCart, removeProduct} from '../../redux'
 
 let Cart = (props) => {
@@ -110,7 +110,7 @@ let Cart = (props) => {
                 }
             </div>
             <div class={`${style.footer} ${props.products.length === 0 ? style.disabled : ''}`}>
-                <a href="/buy">
+                <a href="/buy" onClick={ () => props.getToken() }>
                     <FormattedMessage id="btnToBuy">
                         {message => <AnimatedButton text={message} onClick={() => {
                         }} extraClass="blackBtn"/>}
@@ -125,6 +125,7 @@ const mapStateToProps = state => {
     return {
         products: state.cart.products,
         language: state.language.language,
+        token: state.paybridge.token
     };
 }
 
@@ -132,7 +133,8 @@ const mapDispatchToProps = dispatch => {
     return {
         emptyCart: () => dispatch(emptyCart()),
         changeProductQuantity: (product, numProd) => dispatch(changeProductQuantity(product, numProd)),
-        removeProduct: product => dispatch(removeProduct(product))
+        removeProduct: product => dispatch(removeProduct(product)),
+        getToken: () => dispatch(getToken())
     }
 }
 

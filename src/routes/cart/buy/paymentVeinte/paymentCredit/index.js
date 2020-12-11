@@ -1,8 +1,8 @@
 import { h } from 'preact';
 import style from '../../style.css';
-import { FormattedMessage } from 'react-intl';
 import {useEffect} from "preact/hooks";
 import {FormSelect} from "materialize-css";
+import internationalization from "../../../../../i18n/i18n";
 
 const PaymentCredit = () => {
     useEffect(() => {
@@ -11,29 +11,20 @@ const PaymentCredit = () => {
     }, []);
     return (
         <div className="container" id="paymentPaymentMobile">
-            <h5>Pago Crédito</h5>
-
+            <h5>{internationalization("txtCreditPayment")}</h5>
             <div className="row">
                 <div className="col s12">
                     {/* Name and Lastnames */}
                     <div className="input-field col s6">
                         <input id="id_name" name="name" type="text" className="validate" required/>
                         <label htmlFor="id_name">
-                            <FormattedMessage id="txtNames">
-                                {message => {
-                                    message
-                                }}.
-                            </FormattedMessage>
+                            {internationalization("txtNames")}
                         </label>
                     </div>
                     <div className="input-field col s6">
                         <input id="id_lastnames" name="lastanes" type="text" className="validate" required/>
                         <label htmlFor="id_lastnames">
-                            <FormattedMessage id="txtSurnames">
-                                {message => {
-                                    message
-                                }}.
-                            </FormattedMessage>
+                            {internationalization("txtSurnames")}
                         </label>
                     </div>
                 </div>
@@ -44,31 +35,19 @@ const PaymentCredit = () => {
                     <div className="input-field col s6">
                         <input id="id_card" name="card" type="text" className="validate" required/>
                         <label htmlFor="id_card">
-                            <FormattedMessage id="txtCard">
-                                {message => {
-                                    message
-                                }}.
-                            </FormattedMessage>
+                            {internationalization("txtCard")}
                         </label>
                     </div>
                     <div className="input-field col s3">
                         <input id="id_exp" name="exp" type="text" className="validate" required/>
                         <label htmlFor="id_exp">
-                            <FormattedMessage id="txtExp">
-                                {message => {
-                                    message
-                                }}.
-                            </FormattedMessage>
+                            {internationalization("txtExp")}
                         </label>
                     </div>
                     <div className="input-field col s3">
                         <input id="id_cvv" name="cvv" type="text" className="validate" required/>
                         <label htmlFor="id_cvv">
-                            <FormattedMessage id="txtCVV">
-                                {message => {
-                                    message
-                                }}.
-                            </FormattedMessage>
+                            {internationalization("txtCVV")}
                         </label>
                     </div>
                 </div>
@@ -87,11 +66,7 @@ const PaymentCredit = () => {
                     <div className="input-field col s6">
                         <input id="id_quotation" name="quotation" type="number" className="validate" min={0.0} required/>
                         <label htmlFor="id_quotation">
-                            <FormattedMessage id="txtQuotation">
-                                {message => {
-                                    message
-                                }}.
-                            </FormattedMessage>
+                            {internationalization("txtQuotation")}
                         </label>
                     </div>
                 </div>
@@ -99,11 +74,7 @@ const PaymentCredit = () => {
             <div className="row">
                 <div className="col s12">
                     <button onClick={() => setActiveTab(1)}>
-                        <FormattedMessage id="btnToPay">
-                            {message => {
-                                message
-                            }}.
-                        </FormattedMessage>
+                        {internationalization("btnToPay")}
                     </button>
                 </div>
             </div>

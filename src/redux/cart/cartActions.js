@@ -17,7 +17,6 @@ export const getProducts = () => {
     }
 }
 
-
 /**
  * Empty Cart is an action creator
  */
@@ -64,22 +63,6 @@ export const changeProductQuantity = (product, numProd) => {
         quantity: numProd
     }
 };
-
-/*export const changeProductQuantity = (product, amountOfChange) => {
-    let newQuantity = 0;
-    const newState = {
-        type: UPDATE_PRODUCTS,
-        products: store.getState().cart.products.map(prod => {
-            if (prod.name === product.name) {
-                newQuantity = prod.quantity + amountOfChange;
-                return { ...prod, quantity: prod.quantity + amountOfChange };
-            }
-            return prod;
-        }),
-    };
-    if (newQuantity === 0) return removeProduct(product);
-    return newState;
-};*/
 
 
 

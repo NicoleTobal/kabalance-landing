@@ -4,7 +4,6 @@ const initialState = {
     language: 'es-ES'
 }
 
-
 function languageReducer(state = initialState, action) {
     switch (action.type) {
         case CHANGE_LANGUAGE:

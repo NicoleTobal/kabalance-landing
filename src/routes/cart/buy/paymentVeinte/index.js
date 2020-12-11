@@ -6,8 +6,9 @@ import PaymentTransfer from "./paymentTransfer";
 import PaymentCryptos from "./paymentCrypto";
 import PaymentCredit from "./paymentCredit";
 import {FormattedMessage} from "react-intl";
-import {useState, useEffect} from 'preact/hooks';
+import {useState} from 'preact/hooks';
 import {textSiteContent} from "../../../../i18n/textContent";
+import { getToken } from "../../../../redux";
 
 let PaymentsMethods = ({}) => {
     const [showPayEmail, setShowPayEmail] = useState(true);
@@ -15,6 +16,7 @@ let PaymentsMethods = ({}) => {
     const [showPayTransfer, setShowPayTransfer] = useState(false);
     const [showPayCrypto, setShowPayCrypto] = useState(false);
     const [showPayCredit, setShowPayCredit] = useState(false);
+
 
     const showComponent = (component) => {
         switch (component) {
