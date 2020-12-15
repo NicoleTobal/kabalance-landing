@@ -5,15 +5,14 @@ import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
 import {addProduct, getToken} from "../../redux";
 import {changeProductQuantity, emptyCart, removeProduct} from '../../redux'
+import internationalization from "../../i18n/i18n";
 
 let Cart = (props) => {
     return (
         <div class={style.cart}>
             <div class={`${style.header} ${props.products.length === 0 ? style.disabled : ''}`}>
                 <btn class={style.emptyCartBtn} onClick={() => props.emptyCart()}>
-                    <FormattedMessage id="btnEmptyCart">
-                        {message => <spam>{message}</spam>}
-                    </FormattedMessage>
+                    <spam>{internationalization("btnEmptyCart")}</spam>
                 </btn>
             </div>
             <div class={style.tableContainer}>
@@ -25,29 +24,19 @@ let Cart = (props) => {
                                 <tr>
                                     <th/>
                                     <th>
-                                        <FormattedMessage id="headerProduct">
-                                            {message => <spam>{message}</spam>}
-                                        </FormattedMessage>
+                                        <spam>{internationalization("headerProduct")}</spam>
                                     </th>
                                     <th>
-                                        <FormattedMessage id="headerDescription">
-                                            {message => <spam>{message}</spam>}
-                                        </FormattedMessage>
+                                        <spam>{internationalization("headerDescription")}</spam>
                                     </th>
                                     <th>
-                                        <FormattedMessage id="headerQuantity">
-                                            {message => <spam>{message}</spam>}
-                                        </FormattedMessage>
+                                        <spam>{internationalization("headerQuantity")}</spam>
                                     </th>
                                     <th>
-                                        <FormattedMessage id="headerPrice">
-                                            {message => <spam>{message}</spam>}
-                                        </FormattedMessage>
+                                        <spam>{internationalization("headerPrice")}</spam>
                                     </th>
                                     <th>
-                                        <FormattedMessage id="headerTotal">
-                                            {message => <spam>{message}</spam>}
-                                        </FormattedMessage>
+                                        <spam>{internationalization("headerTotal")}</spam>
                                     </th>
                                     <th/>
                                 </tr>

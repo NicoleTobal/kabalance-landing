@@ -4,7 +4,7 @@ import {useState, useEffect} from 'preact/hooks';
 import MovingImage from '../movingImage';
 import {connect} from 'react-redux';
 import {addProduct} from '../../../redux';
-import {FormattedMessage} from "react-intl";
+import internationalization from "../../../i18n/i18n";
 
 // FIX ME: add another component for products characteristics
 let RecipeMenu = ({language, addProduct, image, title, price: productPrice, flavours = [], styles = [], sizes = [], onClick, collapsed}) => {
@@ -174,9 +174,7 @@ let RecipeMenu = ({language, addProduct, image, title, price: productPrice, flav
                                             }}>+</span>
                                         </div>
                                         <p class={style.price}>${productPrice * quantity}</p>
-                                        <FormattedMessage id="btnAdd">
-                                            {message => <button onClick={addToCart}>{message}</button>}
-                                        </FormattedMessage>
+                                        <button onClick={addToCart}>{internationalization("btnAdd")}</button>
                                     </div>
                                 </div>
                             </div>

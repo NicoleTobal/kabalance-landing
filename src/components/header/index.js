@@ -1,9 +1,8 @@
 import {h} from 'preact';
 import style from './style.css';
 import {connect} from 'react-redux';
-import {FormattedMessage} from "react-intl";
 import {changeLanguage} from "../../redux/language/languageActions";
-
+import internationalization from "../../i18n/i18n";
 
 let Header = (props) => {
     return (
@@ -12,24 +11,23 @@ let Header = (props) => {
                 <img src="/assets/images/symbol_green.png"/>
             </div>
             <nav>
-                <FormattedMessage id="nav.home">
-                    {message => <a activeClassName={style.active} href="/">{message}</a>}
-                </FormattedMessage>
-                <FormattedMessage id="nav.products">
-                    {message => <a activeClassName={style.active} href="/products">{message}</a>}
-                </FormattedMessage>
-                <FormattedMessage id="nav.about">
-                    {message => <a activeClassName={style.active} href="/aboutUs">{message}</a>}
-                </FormattedMessage>
-                <FormattedMessage id="nav.recipe">
-                    {message => <a activeClassName={style.active} href="/recipes">{message}</a>}
-                </FormattedMessage>
+                <a activeClassName={style.active} href="/">
+                    {internationalization('nav.home')}
+                </a>
+                <a activeClassName={style.active} href="/products">
+                    {internationalization('nav.products')}
+                </a>
+                <a activeClassName={style.active} href="/aboutUs">
+                    {internationalization('nav.about')}
+                </a>
+                <a activeClassName={style.active} href="/recipes">
+                    {internationalization('nav.recipe')}
+                </a>
             </nav>
             <div class={style.flags}>
                 <a onClick={() => {
                     props.changeLanguage('es-ES');
                 }}>
-                    {/*<a onClick={() => { selectLang('es-ES'); }}>*/}
                     <img src="/assets/images/spain.png"/>
                 </a>
                 <a onClick={() => {
@@ -37,8 +35,6 @@ let Header = (props) => {
                 }}>
                     <img className={style.disabled} src="/assets/images/united-states.png"/>
                 </a>
-
-
                 <span class={style.ordersNumber}>
                   {props.products.reduce((prev, product) => {
                       return product.quantity + prev
@@ -48,9 +44,9 @@ let Header = (props) => {
                     <img class={style.cart} src="/assets/images/shopping-cart.png"/>
                 </a>
                 <p>
-                    <FormattedMessage id="nav.signin">
-                        {message => <a activeClassName={style.active} href="/">{message}</a>}
-                    </FormattedMessage>
+                    <a activeClassName={style.active} href="/">
+                        {internationalization('nav.signin')}
+                    </a>
                 </p>
             </div>
         </header>

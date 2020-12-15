@@ -51,8 +51,7 @@ class Products extends Component {
         super(props);
         this.state = {
             currentImage: -1,
-            products: productList,
-            countrySelected: '',
+            products: productList
         };
     }
 
@@ -97,7 +96,7 @@ class Products extends Component {
     }
 
     onCountrySelect(e) {
-        this.setState({countrySelected: e.target.innerText});
+        this.props.selectCity(e);
     }
 
     getColumnWidth(index) {
@@ -118,16 +117,13 @@ class Products extends Component {
     }
 
     render() {
-        const {city} = this.props;
-
-        if (city === '' && !this.state.countrySelected) {
-            return <CountrySelection onCountrySelect={e => this.onCountrySelect(e)}/>;
+        if (this.props.city === '') {
+            return <CountrySelection/>;
         }
         return (
             <div
                 id="products"
-                class={`${style.productContainer} row col-md-12 animate__animated animate__fadeInRight animate__normal`}
-            >
+                class={`${style.productContainer} row col-md-12 animate__animated animate__fadeInRight animate__normal`}>
                 {
                     this.state.products.map((product, index) => (
                         <div class={`${style.product} ${this.getColumnWidth(index)}`} key={index}>
@@ -146,7 +142,21 @@ class Products extends Component {
                         </div>
                     ))
                 }
-                {/* <div class={style.products}>
+            </div>
+        );
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        language: state.language.language,
+        city: state.cart.city
+    };
+}
+
+export default connect(mapStateToProps, null)(Products);
+
+{/* <div class={style.products}>
           <div class={style.carouselContainer}>
             <div class={style.carousel}>
               {
@@ -171,17 +181,5 @@ class Products extends Component {
           <svg class={style.nextArrow} onClick={this.onNextButtonClick} id="Capa_1" enable-background="new 0 0 551.13 551.13" height="512" viewBox="0 0 551.13 551.13" width="512" xmlns="http://www.w3.org/2000/svg">
             <path d="m361.679 275.565-223.896 223.897v51.668l275.565-275.565-275.565-275.565v51.668z" />
           </svg>
-        </div> */}
-            </div>
-        );
-    }
+        </div> */
 }
-
-const mapStateToProps = state => {
-    return {
-        language: state.language.language,
-        city: state.city
-    };
-}
-
-export default connect(mapStateToProps, null)(Products);

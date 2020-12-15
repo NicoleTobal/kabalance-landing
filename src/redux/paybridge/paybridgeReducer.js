@@ -2,7 +2,8 @@ import {
     FETCH_PAYBRIDGE_TOKEN,
     FETCH_PAYBRIDGE_FAILURE,
     FETCH_PAYBRIDGE_REQUEST,
-    FETCH_PAYBRIDGE_SUCCESS
+    FETCH_PAYBRIDGE_SUCCESS,
+    FETCH_PAYBRIDGE_BANK_INFO
 } from "./paybridgeTypes";
 
 const initialState = {
@@ -10,7 +11,10 @@ const initialState = {
     show: true,
     loading: false,
     data: [],
-    error: ''
+    error: '',
+    accountHolder: '',
+    bank: '',
+    accountNumber: ''
 }
 
 const paybridgeReducer = (state = initialState, action) => {
@@ -19,6 +23,14 @@ const paybridgeReducer = (state = initialState, action) => {
             return {
                 ...state,
                 token: action.payload
+            }
+        case FETCH_PAYBRIDGE_BANK_INFO:
+            return {
+                ...state,
+                loading: false,
+                show: true,
+                accountHolder: action.payload[0].data[2][1],
+                bank: action.payload[0].name
             }
         case FETCH_PAYBRIDGE_REQUEST:
             return {

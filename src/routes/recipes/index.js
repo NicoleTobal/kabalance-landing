@@ -1,13 +1,11 @@
 import { h } from 'preact';
 import style from './style';
-import {FormattedMessage} from "react-intl";
+import internationalization from "../../i18n/i18n";
 
 const Recipes = () => {
   return (
     <div class={style.recipes}>
-        <FormattedMessage id="titleRecipes">
-            {message => <h2>"{message}"</h2>}
-        </FormattedMessage>
+        <h2>"{internationalization("titleRecipes")}"</h2>
     </div>
   );
 }

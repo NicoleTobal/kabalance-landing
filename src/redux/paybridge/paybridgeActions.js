@@ -3,7 +3,8 @@ import {
     FETCH_PAYBRIDGE_TOKEN,
     FETCH_PAYBRIDGE_FAILURE,
     FETCH_PAYBRIDGE_REQUEST,
-    FETCH_PAYBRIDGE_SUCCESS
+    FETCH_PAYBRIDGE_SUCCESS,
+    FETCH_PAYBRIDGE_BANK_INFO
 } from "./paybridgeTypes";
 
 const PAYBRIDGE_URL = 'http://206.189.182.231:8060';
@@ -26,6 +27,13 @@ const fetchPaybridgeRequest = () => {
 const fetchPaybridgeSuccess = data => {
     return {
         type: FETCH_PAYBRIDGE_SUCCESS,
+        payload: data
+    }
+}
+
+const fetchPaybridgeBankInfo = data => {
+    return {
+        type: FETCH_PAYBRIDGE_BANK_INFO,
         payload: data
     }
 }
@@ -62,19 +70,24 @@ export const getToken = () => {
  * Get Bancamida info
  */
 export const getBank = (token) => {
-    axios({
-        method: 'get',
-        url: `${PAYBRIDGE_URL}/api/pgm/`,
-        headers: {
-            'Authorization': `Token ${token}`,
-            'Content-Type': 'application/json'
-        }
-    }).then(response => {
-        return {data: response.data};
-    }).catch(error => {
-        const errorMsg = error.message;
-        return {error: errorMsg};
-    })
+    return (dispatch) => {
+        dispatch(fetchPaybridgeRequest())
+        axios({
+            method: 'get',
+            url: `${PAYBRIDGE_URL}/api/pgm/`,
+            headers: {
+                'Authorization': `Token ${token}`,
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            const dataResponse = response.data
+            //console.log("Data", dataResponse[0].data)
+            dispatch(fetchPaybridgeBankInfo(dataResponse))
+        }).catch(error => {
+            const errorMsg = error.message;
+            dispatch(fetchPaybridgeFailure(errorMsg))
+        })
+    }
 }
 
 /**
@@ -83,7 +96,7 @@ export const getBank = (token) => {
 export const doPaymentMobile = (body, token) => {
     return (dispatch) => {
         dispatch(fetchPaybridgeRequest())
-      /*  axios({
+        axios({
                 method: 'post',
                 url: `${PAYBRIDGE_URL}/api/pay/`,
                 headers: {
@@ -92,15 +105,7 @@ export const doPaymentMobile = (body, token) => {
                 },
                 data: body
             }
-        )*/
-        axios({
-            method: 'post',
-            url: `${PAYBRIDGE_URL}/auth-token/`,
-            data: {username, password},
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
+        ).then(response => {
                 const dataResponse = response.data
                 dispatch(fetchPaybridgeSuccess(dataResponse))
             }).catch(error => {

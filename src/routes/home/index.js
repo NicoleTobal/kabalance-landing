@@ -4,6 +4,7 @@ import Instagram from '../aboutUs/instagram';
 import AnimatedButton from '../products/animatedButton';
 import Contact from '../contact';
 import {FormattedMessage} from "react-intl";
+import internationalization from "../../i18n/i18n";
 
 const resellers = [
   {
@@ -26,9 +27,7 @@ const Home = (props) => (
       <img class={style.logo} src="/assets/images/logo-black.png" />
       <div class={style.firstSection}>
         <div class={style.content}>
-          <FormattedMessage id="phrase">
-            {message => <h1>"{message}"</h1>}
-          </FormattedMessage>
+          <h1>"{internationalization("phrase")}"</h1>
           <div class={style.social}>
             <Instagram />
           </div>
@@ -38,9 +37,7 @@ const Home = (props) => (
         </div>
       </div>
       <div class={style.secondSection}>
-        <FormattedMessage id="txtFindUs">
-          {message => <h1>"{message}"</h1>}
-        </FormattedMessage>
+        <h1>"{internationalization("txtFindUs")}"</h1>
         <div class={`${style.resellers} row`}>
           {
             resellers.map((reseller, index) => (
