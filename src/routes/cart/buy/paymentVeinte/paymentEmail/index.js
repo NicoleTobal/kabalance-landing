@@ -3,6 +3,11 @@ import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 import { doPaymentEmail } from "../../../../../redux";
 import internationalization from "../../../../../i18n/i18n";
+import { BoxLoading } from 'react-loadingg';
+
+const Example = ({ type, color }) => (
+    <ReactLoading type={type} color={color} height={667} width={375} />
+);
 
 function PaymentEmail(props) {
 
@@ -31,9 +36,9 @@ function PaymentEmail(props) {
                         <div className="col s12">
                             <div className="card with-header ">
                                 <div className="card-content">
-                                    <span className="card-title">
-                                        {internationalization('txtPaymentData')}
-                                    </span>
+                                 <span className="card-title">
+                                     {internationalization('txtPaymentData')}
+                                 </span>
                                     <p>Email: <b>test@gmail.com</b></p>
                                 </div>
                             </div>
@@ -72,9 +77,7 @@ function PaymentEmail(props) {
         : props.loading ?
             // Show Loading of request
             (
-                <div className="progress">
-                    <div className="indeterminate"></div>
-                </div>
+                <BoxLoading color="#2B6845" />
             )
             : props.error ?
                 // Show errors if ocurrs an exception
@@ -103,3 +106,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaymentEmail);
+

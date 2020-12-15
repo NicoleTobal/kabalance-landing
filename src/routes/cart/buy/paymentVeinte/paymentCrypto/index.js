@@ -6,12 +6,11 @@ import dash from '../../../../../assets/images/cryptos/dash.jpeg';
 import petro from '../../../../../assets/images/cryptos/petro.jpeg';
 import ether from '../../../../../assets/images/cryptos/ether.jpeg';
 import {useForm} from "react-hook-form";
-import {Loading} from "../../../../../components/loading/index";
-import ReactLoading from 'react-loading';
 import {useState} from "preact/hooks";
 import {doPaymentCrypto} from "../../../../../redux";
 import {connect} from "react-redux";
 import internationalization from "../../../../../i18n/i18n";
+import {CircleToBlockLoading} from "react-loadingg";
 
 const cryptos = [
     {id: 1, name: 'bitcoin', currency: 'btc', src: bitcoin, hash: '1cd2122dFW67JHasdqqf415c13f1'},
@@ -21,7 +20,7 @@ const cryptos = [
     {id: 5, name: 'ether', currency: 'eth', src: ether, hash: 'f411cd2122dFW67Jsdqqf415c13f1Ha'}
 ];
 
-const PaymentCryptos = (props) => {
+const PaymentCryptos = (props, {doPaymentCrypto}) => {
     const {register, handleSubmit, watch, errors} = useForm();
     const [coin, setCoin] = useState({
         id: 6,
@@ -149,14 +148,16 @@ const PaymentCryptos = (props) => {
         )
     ) : props.loading ?
         (
-            <div className="progress">
-                <div className="indeterminate"></div>
+            <div className="loading-container">
+                <CircleToBlockLoading className="loading" color="#2B6845"/>
             </div>
-        ) : (
+        )
+        : (props.error) ? (<h6>Error: {props.error}</h6>)
+        : (
             <div className="container">
-                <h5>
-                    Sent
-                </h5>
+                <h4>
+                    Pago en Criptomonedas efectuado
+                </h4>
             </div>
         )
 }
@@ -165,7 +166,9 @@ const mapStateToProps = state => {
     return {
         data: state.paybridge.data,
         show: state.paybridge.show,
-        token: state.paybridge.token
+        loading: state.paybridge.loading,
+        token: state.paybridge.token,
+        error: state.paybridge.error
     }
 }
 

@@ -10,12 +10,6 @@ const PAYBRIDGE_URL = 'http://206.189.182.231:8060';
 const username = "test@gmail.com";
 const password = "pru3ba123456789";
 
-export const fetchPaybridgeRequest = () => {
-    return {
-        type: FETCH_PAYBRIDGE_REQUEST
-    }
-}
-
 export const fetchPaybridgeToken = token => {
     return {
         type: FETCH_PAYBRIDGE_TOKEN,
@@ -23,14 +17,20 @@ export const fetchPaybridgeToken = token => {
     }
 }
 
-export const fetchPaybridgeSuccess = data => {
+const fetchPaybridgeRequest = () => {
+    return {
+        type: FETCH_PAYBRIDGE_REQUEST
+    }
+}
+
+const fetchPaybridgeSuccess = data => {
     return {
         type: FETCH_PAYBRIDGE_SUCCESS,
         payload: data
     }
 }
 
-export const fetchPaybridgeFailure = error => {
+const fetchPaybridgeFailure = error => {
     return {
         type: FETCH_PAYBRIDGE_FAILURE,
         payload: error
@@ -42,7 +42,6 @@ export const fetchPaybridgeFailure = error => {
  */
 export const getToken = () => {
     return (dispatch) => {
-        dispatch(fetchPaybridgeRequest)
         axios({
             method: 'post',
             url: `${PAYBRIDGE_URL}/auth-token/`,
@@ -83,8 +82,8 @@ export const getBank = (token) => {
  */
 export const doPaymentMobile = (body, token) => {
     return (dispatch) => {
-        dispatch(fetchPaybridgeRequest)
-        axios({
+        dispatch(fetchPaybridgeRequest())
+      /*  axios({
                 method: 'post',
                 url: `${PAYBRIDGE_URL}/api/pay/`,
                 headers: {
@@ -93,22 +92,31 @@ export const doPaymentMobile = (body, token) => {
                 },
                 data: body
             }
-        ).then(response => {
-            console.log('The Mobile Payment was successful!', response)
-            dispatch(fetchPaybridgeSuccess(response))
-        }).catch(error => {
-            const errorMsg = error.message;
-            dispatch(fetchPaybridgeFailure(errorMsg))
-        })
+        )*/
+        axios({
+            method: 'post',
+            url: `${PAYBRIDGE_URL}/auth-token/`,
+            data: {username, password},
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+                const dataResponse = response.data
+                dispatch(fetchPaybridgeSuccess(dataResponse))
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(fetchPaybridgeFailure(errorMsg))
+            })
     }
 }
+/**/
 
 /**
  * Do the Transfer Payment
  */
 export const doPaymentTransfer = (body, token) => {
     return (dispatch) => {
-        dispatch(fetchPaybridgeRequest)
+        dispatch(fetchPaybridgeRequest())
         axios({
             method: 'post',
             url: `${PAYBRIDGE_URL}/api/pay/`,
@@ -118,8 +126,8 @@ export const doPaymentTransfer = (body, token) => {
             },
             data: body
         }).then(response => {
-            console.log('The Transfer Payment was successful!', response)
-            dispatch(fetchPaybridgeSuccess(response))
+            const dataResponse = response.data
+            dispatch(fetchPaybridgeSuccess(dataResponse))
         }).catch(error => {
             const errorMsg = error.message;
             dispatch(fetchPaybridgeFailure(errorMsg))
@@ -133,7 +141,7 @@ export const doPaymentTransfer = (body, token) => {
  */
 export const doPaymentCrypto = (body, token) => {
     return (dispatch) => {
-        dispatch(fetchPaybridgeRequest)
+        dispatch(fetchPaybridgeRequest())
         axios({
             method: 'post',
             url: `${PAYBRIDGE_URL}/api/pay/crypto/`,
@@ -143,8 +151,8 @@ export const doPaymentCrypto = (body, token) => {
             },
             data: body
         }).then(response => {
-            console.log('The Crypto Payment was successful!', response)
-            dispatch(fetchPaybridgeSuccess(response))
+            const dataResponse = response.data
+            dispatch(fetchPaybridgeSuccess(dataResponse))
         }).catch(error => {
             const errorMsg = error.message;
             dispatch(fetchPaybridgeFailure(errorMsg))
@@ -167,7 +175,8 @@ export const doPaymentEmail = () => {
                 'Content-Type': 'application/json'
             }
         }).then(response => {
-            dispatch(fetchPaybridgeToken(response))
+            const dataResponse = response.data
+            dispatch(fetchPaybridgeSuccess(dataResponse))
         }).catch(error => {
             const errorMsg = error.message;
             dispatch(fetchPaybridgeFailure(errorMsg))

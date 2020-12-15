@@ -1,16 +1,17 @@
-import {h, Component} from 'preact';
+import React, {h, Component} from 'preact';
 import style from '../style.css';
 import PaymentEmail from "./paymentEmail";
 import PaymentMobile from "./paymentMobile";
 import PaymentTransfer from "./paymentTransfer";
 import PaymentCryptos from "./paymentCrypto";
 import PaymentCredit from "./paymentCredit";
-import {FormattedMessage} from "react-intl";
 import {useState} from 'preact/hooks';
 import {textSiteContent} from "../../../../i18n/textContent";
 import { getToken } from "../../../../redux";
+import internationalization from "../../../../i18n/i18n";
+import {connect} from "react-redux";
 
-let PaymentsMethods = ({}) => {
+let PaymentsMethods = (props) => {
     const [showPayEmail, setShowPayEmail] = useState(true);
     const [showPayMobile, setShowPayMobile] = useState(false);
     const [showPayTransfer, setShowPayTransfer] = useState(false);
@@ -62,28 +63,29 @@ let PaymentsMethods = ({}) => {
 
     return (
         <div>
+
             <header className={style.header}>
                 <nav>
-                    <FormattedMessage id="btnEmail">
-                        {message => <a activeClassName={style.active}
-                                       onClick={() => showComponent('payment_email')}> {message}</a>}
-                    </FormattedMessage>
-                    <FormattedMessage id="txtMobilePayment">
-                        {message => <a activeClassName={style.active}
-                                       onClick={() => showComponent('payment_mobile')}>{message}</a>}
-                    </FormattedMessage>
-                    <FormattedMessage id="btnTransfer">
-                        {message => <a activeClassName={style.active}
-                                       onClick={() => showComponent('payment_transfer')}>{message}</a>}
-                    </FormattedMessage>
-                    <FormattedMessage id="btnCrypto">
-                        {message => <a activeClassName={style.active}
-                                       onClick={() => showComponent('payment_crypto')}>{message}</a>}
-                    </FormattedMessage>
-                    <FormattedMessage id="btnCreditCard">
-                        {message => <a activeClassName={style.active}
-                                       onClick={() => showComponent('payment_credit')}>{message}</a>}
-                    </FormattedMessage>
+                    <a activeClassName={style.active}
+                       onClick={() => showComponent('payment_email')}>
+                        {internationalization("btnEmail")}
+                    </a>
+                    <a activeClassName={style.active}
+                       onClick={() => showComponent('payment_mobile')}>
+                        {internationalization("txtMobilePayment")}
+                    </a>
+                    <a activeClassName={style.active}
+                       onClick={() => showComponent('payment_transfer')}>
+                        {internationalization("btnTransfer")}
+                    </a>
+                    <a activeClassName={style.active}
+                       onClick={() => showComponent('payment_crypto')}>
+                        {internationalization("btnCrypto")}
+                    </a>
+                    <a activeClassName={style.active}
+                       onClick={() => showComponent('payment_credit')}>
+                        {internationalization("btnCreditCard")}
+                    </a>
                 </nav>
             </header>
             {showPayEmail && <PaymentEmail/>}
@@ -95,4 +97,9 @@ let PaymentsMethods = ({}) => {
     );
 };
 
-export default PaymentsMethods;
+const mapStateToProps = state => {
+    return {
+        show: state.paybridge.show
+    }
+}
+export default connect(mapStateToProps, null)(PaymentsMethods);
