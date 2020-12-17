@@ -3,7 +3,8 @@ import {
     FETCH_PAYBRIDGE_FAILURE,
     FETCH_PAYBRIDGE_REQUEST,
     FETCH_PAYBRIDGE_SUCCESS,
-    FETCH_PAYBRIDGE_BANK_INFO
+    FETCH_PAYBRIDGE_BANK_INFO_PGM,
+    FETCH_PAYBRIDGE_BANK_INFO_TRF
 } from "./paybridgeTypes";
 
 const initialState = {
@@ -14,7 +15,9 @@ const initialState = {
     error: '',
     accountHolder: '',
     bank: '',
-    accountNumber: ''
+    accountNumber: '',
+    rif: '',
+    phone: ''
 }
 
 const paybridgeReducer = (state = initialState, action) => {
@@ -24,13 +27,25 @@ const paybridgeReducer = (state = initialState, action) => {
                 ...state,
                 token: action.payload
             }
-        case FETCH_PAYBRIDGE_BANK_INFO:
+        case FETCH_PAYBRIDGE_BANK_INFO_PGM:
             return {
                 ...state,
                 loading: false,
                 show: true,
-                accountHolder: action.payload[0].data[2][1],
-                bank: action.payload[0].name
+                bank: action.payload[0].name,
+                rif: action.payload[0].data[0][1],
+                phone: action.payload[0].data[1][1],
+                accountHolder: action.payload[0].data[2][1]
+            }
+        case FETCH_PAYBRIDGE_BANK_INFO_TRF:
+            return {
+                ...state,
+                loading: false,
+                show: true,
+                bank: action.payload[2].name,
+                rif: action.payload[2].data[1][1],
+                accountHolder: action.payload[2].data[2][1],
+                accountNumber: action.payload[2].data[0][1]
             }
         case FETCH_PAYBRIDGE_REQUEST:
             return {

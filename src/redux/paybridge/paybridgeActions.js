@@ -4,7 +4,8 @@ import {
     FETCH_PAYBRIDGE_FAILURE,
     FETCH_PAYBRIDGE_REQUEST,
     FETCH_PAYBRIDGE_SUCCESS,
-    FETCH_PAYBRIDGE_BANK_INFO
+    FETCH_PAYBRIDGE_BANK_INFO_PGM,
+    FETCH_PAYBRIDGE_BANK_INFO_TRF
 } from "./paybridgeTypes";
 
 const PAYBRIDGE_URL = 'http://206.189.182.231:8060';
@@ -31,9 +32,16 @@ const fetchPaybridgeSuccess = data => {
     }
 }
 
-const fetchPaybridgeBankInfo = data => {
+const fetchPaybridgeBankInfoPGM = data => {
     return {
-        type: FETCH_PAYBRIDGE_BANK_INFO,
+        type: FETCH_PAYBRIDGE_BANK_INFO_PGM,
+        payload: data
+    }
+}
+
+const fetchPaybridgeBankInfoTRF = data => {
+    return {
+        type: FETCH_PAYBRIDGE_BANK_INFO_TRF,
         payload: data
     }
 }
@@ -69,7 +77,7 @@ export const getToken = () => {
 /**
  * Get Bancamida info
  */
-export const getBank = (token) => {
+export const getBankPGM = (token) => {
     return (dispatch) => {
         dispatch(fetchPaybridgeRequest())
         axios({
@@ -82,7 +90,7 @@ export const getBank = (token) => {
         }).then(response => {
             const dataResponse = response.data
             //console.log("Data", dataResponse[0].data)
-            dispatch(fetchPaybridgeBankInfo(dataResponse))
+            dispatch(fetchPaybridgeBankInfoPGM(dataResponse))
         }).catch(error => {
             const errorMsg = error.message;
             dispatch(fetchPaybridgeFailure(errorMsg))
@@ -192,31 +200,23 @@ export const doPaymentEmail = () => {
 /**
  * List of Banks
  */
-export const bankList = () => {
+export const getBankTRF = (token) => {
     return (dispatch) => {
-        dispatch(fetchPaybridgeRequest)
+        dispatch(fetchPaybridgeRequest())
         axios({
-            method: 'post',
-            url: `${PAYBRIDGE_URL}/auth-token/`,
-            data: {username, password},
+            method: 'get',
+            url: `${PAYBRIDGE_URL}/api/banks/`,
             headers: {
+                'Authorization': `Token ${token}`,
                 'Content-Type': 'application/json'
             }
         }).then(response => {
-            dispatch(fetchPaybridgeSuccess(response))
-            axios({
-                method: 'get',
-                url: `${PAYBRIDGE_URL}/api/banks/`,
-                headers: {
-                    'Authorization': `Token ${response.data.token}`,
-                    'Content-Type': 'application/json'
-                }
-            })
-        }).then(response => {
-            dispatch(fetchPaybridgeSuccess(response))
+            const dataResponse = response.data;
+            dispatch(fetchPaybridgeBankInfoTRF(dataResponse))
         }).catch(error => {
             const errorMsg = error.message;
             dispatch(fetchPaybridgeFailure(errorMsg))
         })
     }
+
 };

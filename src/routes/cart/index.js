@@ -1,5 +1,5 @@
 import {h} from 'preact';
-import style from './style';
+import style from './style.css';
 import AnimatedButton from '../products/animatedButton';
 import {connect} from 'react-redux';
 import {FormattedMessage} from 'react-intl';

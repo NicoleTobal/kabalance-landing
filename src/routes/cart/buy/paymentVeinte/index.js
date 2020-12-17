@@ -3,11 +3,11 @@ import style from '../style.css';
 import PaymentEmail from "./paymentEmail";
 import PaymentMobile from "./paymentMobile";
 import PaymentTransfer from "./paymentTransfer";
-import PaymentCryptos from "./paymentCrypto";
 import PaymentCredit from "./paymentCredit";
+import PaymentCrypto from "./paymentCrypto";
 import {useState} from 'preact/hooks';
 import {textSiteContent} from "../../../../i18n/textContent";
-import {doPaymentMobile, getBank, getToken} from "../../../../redux";
+import {doPaymentMobile, getToken} from "../../../../redux";
 import internationalization from "../../../../i18n/i18n";
 import {connect} from "react-redux";
 import {CircleToBlockLoading} from "react-loadingg";
@@ -18,14 +18,12 @@ let PaymentsMethods = (props, {getBank}) => {
     const [showPayTransfer, setShowPayTransfer] = useState(false);
     const [showPayCrypto, setShowPayCrypto] = useState(false);
     const [showPayCredit, setShowPayCredit] = useState(false);
-
-    const bankInfo = data => {
-        props.getBank(props.token)
-    };
-
+    const [activeTab, setActiveTab] = useState('payment_email');
+    const getClass = (value, index) => value === index ? 'active' : '';
     const showComponent = (component) => {
         switch (component) {
             case "payment_email":
+                setActiveTab('payment_email');
                 setShowPayEmail(true);
                 setShowPayMobile(false);
                 setShowPayTransfer(false);
@@ -33,22 +31,23 @@ let PaymentsMethods = (props, {getBank}) => {
                 setShowPayCredit(false);
                 break;
             case "payment_mobile":
+                setActiveTab('payment_mobile');
                 setShowPayMobile(true);
                 setShowPayEmail(false);
                 setShowPayTransfer(false);
                 setShowPayCrypto(false);
                 setShowPayCredit(false);
-                bankInfo();
                 break;
             case "payment_transfer":
+                setActiveTab('payment_transfer');
                 setShowPayTransfer(true);
                 setShowPayMobile(false);
                 setShowPayEmail(false);
                 setShowPayCrypto(false);
                 setShowPayCredit(false);
-                bankInfo();
                 break;
             case "payment_crypto":
+                setActiveTab('payment_crypto');
                 setShowPayCrypto(true);
                 setShowPayTransfer(false);
                 setShowPayMobile(false);
@@ -56,6 +55,7 @@ let PaymentsMethods = (props, {getBank}) => {
                 setShowPayCredit(false);
                 break;
             case "payment_credit":
+                setActiveTab('payment_credit');
                 setShowPayCredit(true);
                 setShowPayCrypto(false);
                 setShowPayTransfer(false);
@@ -70,34 +70,46 @@ let PaymentsMethods = (props, {getBank}) => {
     return props.show ?
         (
             <div>
-                <header className={style.header}>
-                    <nav>
-                        <a activeClassName={style.active}
+                <ul className="tabs">
+                    <li className="tab col s1">
+                    </li>
+                    <li className="tab col s2">
+                        <a class={getClass(activeTab, 'payment_email')}
                            onClick={() => showComponent('payment_email')}>
                             {internationalization("btnEmail")}
                         </a>
-                        <a activeClassName={style.active}
+                    </li>
+                    <li className="tab col s2">
+                        <a class={getClass(activeTab, 'payment_mobile')}
                            onClick={() => showComponent('payment_mobile')}>
                             {internationalization("txtMobilePayment")}
                         </a>
-                        <a activeClassName={style.active}
+                    </li>
+                    <li className="tab col s2">
+                        <a class={getClass(activeTab, 'payment_transfer')}
                            onClick={() => showComponent('payment_transfer')}>
                             {internationalization("btnTransfer")}
                         </a>
-                        <a activeClassName={style.active}
+                    </li>
+                    <li className="tab col s2">
+                        <a class={getClass(activeTab, 'payment_crypto')}
                            onClick={() => showComponent('payment_crypto')}>
                             {internationalization("btnCrypto")}
                         </a>
-                        <a activeClassName={style.active}
+                    </li>
+                    <li className="tab col s2">
+                        <a class={getClass(activeTab, 'payment_credit')}
                            onClick={() => showComponent('payment_credit')}>
                             {internationalization("btnCreditCard")}
                         </a>
-                    </nav>
-                </header>
+                    </li>
+                    <li className="tab col s1">
+                    </li>
+                </ul>
                 {showPayEmail && <PaymentEmail/>}
                 {showPayMobile && <PaymentMobile/>}
                 {showPayTransfer && <PaymentTransfer/>}
-                {showPayCrypto && <PaymentCryptos/>}
+                {showPayCrypto && <PaymentCrypto/>}
                 {showPayCredit && <PaymentCredit/>}
             </div>
         ) : (props.loading) // Show Loading of request
@@ -107,7 +119,7 @@ let PaymentsMethods = (props, {getBank}) => {
                 : (
                     <div className="card with-header ">
                         <div className="card-content">
-                            <span className="card-title">Pago realizado</span>
+                            <span className="card-title">{internationalization('txtNotifySended')}</span>
                         </div>
                     </div>
                 )
@@ -120,13 +132,10 @@ const mapStateToProps = state => {
         token: state.paybridge.token,
         accountHolder: state.paybridge.accountHolder,
         bank: state.paybridge.bank,
-        accountNumber: state.paybridge.accountNumber
+        accountNumber: state.paybridge.accountNumber,
+        rif: state.paybridge.rif,
+        phone: state.paybridge.phone
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        getBank: (token) => dispatch(getBank(token))
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(PaymentsMethods);
+export default connect(mapStateToProps, null)(PaymentsMethods);
