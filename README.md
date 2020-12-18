@@ -6,6 +6,14 @@ The landing page for Kabalance, a food shop.
 
 - Preact
 
+## Envitomen Variables
+
+Create a .env file in root folder
+
+PREACT_APP_PAYBRIDGE=url:port
+PREACT_APP_USERNAME=useremail
+PREACT_APP_PASSWORD=password
+
 ## CLI Commands
 
 ``` bash
