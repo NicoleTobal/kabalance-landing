@@ -9,12 +9,9 @@ import AboutUs from '../routes/aboutUs';
 import Router from 'preact-router';
 import Recipes from '../routes/recipes';
 import Cart from '../routes/cart';
-import {connect, Provider} from 'react-redux';
-import store from '../redux/store'
+import {connect} from 'react-redux';
 import BuyCart from '../routes/cart/buy';
 import {IntlProvider} from "react-intl";
-import {changeLanguage} from "../redux/language/languageActions";
-import {useState} from "preact/hooks";
 import {textSiteContent} from "../i18n/textContent";
 
 let App = (props) => {

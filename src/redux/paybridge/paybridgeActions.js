@@ -8,9 +8,10 @@ import {
     FETCH_PAYBRIDGE_BANK_INFO_TRF
 } from "./paybridgeTypes";
 
-const PAYBRIDGE_URL = 'http://206.189.182.231:8060';
-const username = "test@gmail.com";
-const password = "pru3ba123456789";
+
+const PAYBRIDGE_URL = process.env.PREACT_APP_PAYBRIDGE;
+const USERNAME = process.env.PREACT_APP_USERNAME;
+const PASSWORD = process.env.PREACT_APP_PASSWORD;
 
 export const fetchPaybridgeToken = token => {
     return {
@@ -61,7 +62,7 @@ export const getToken = () => {
         axios({
             method: 'post',
             url: `${PAYBRIDGE_URL}/auth-token/`,
-            data: {username, password},
+            data: {username: USERNAME, password: PASSWORD},
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -183,7 +184,7 @@ export const doPaymentEmail = () => {
         axios({
             method: 'post',
             url: `${PAYBRIDGE_URL}/auth-token/`,
-            data: {username, password},
+            data: {username: USERNAME, password: PASSWORD},
             headers: {
                 'Content-Type': 'application/json'
             }
