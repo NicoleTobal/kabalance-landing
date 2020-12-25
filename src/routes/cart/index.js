@@ -2,7 +2,6 @@ import {h} from 'preact';
 import style from './style.css';
 import AnimatedButton from '../products/animatedButton';
 import {connect} from 'react-redux';
-import {FormattedMessage} from 'react-intl';
 import {addProduct, getToken} from "../../redux";
 import {changeProductQuantity, emptyCart, removeProduct} from '../../redux'
 import internationalization from "../../i18n/i18n";
@@ -100,10 +99,8 @@ let Cart = (props) => {
             </div>
             <div class={`${style.footer} ${props.products.length === 0 ? style.disabled : ''}`}>
                 <a href="/buy" onClick={ () => props.getToken() }>
-                    <FormattedMessage id="btnToBuy">
-                        {message => <AnimatedButton text={message} onClick={() => {
-                        }} extraClass="blackBtn"/>}
-                    </FormattedMessage>
+                    <AnimatedButton text={internationalization("btnToBuy")} onClick={() => {
+                    }} extraClass="blackBtn" />
                 </a>
             </div>
         </div>

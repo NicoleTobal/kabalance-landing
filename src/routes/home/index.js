@@ -3,7 +3,6 @@ import style from './style';
 import Instagram from '../aboutUs/instagram';
 import AnimatedButton from '../products/animatedButton';
 import Contact from '../contact';
-import {FormattedMessage} from "react-intl";
 import internationalization from "../../i18n/i18n";
 
 const resellers = [
@@ -31,9 +30,7 @@ const Home = (props) => (
           <div class={style.social}>
             <Instagram />
           </div>
-          <FormattedMessage id="btnOrder">
-            {message => <AnimatedButton text={message} onClick={() => {}} />}
-          </FormattedMessage>
+          <AnimatedButton text={internationalization("btnOrder")} onClick={() => {}} />
         </div>
       </div>
       <div class={style.secondSection}>
