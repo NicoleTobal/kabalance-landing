@@ -2,7 +2,7 @@ import {h} from 'preact';
 import './style';
 import {useState, useEffect} from 'preact/hooks';
 import App from './components/app';
-import {IntlProvider} from 'react-intl'
+import {IntlProvider} from 'react-intl';
 import {textSiteContent} from "./i18n/textContent";
 
 const AppIntl = () => {

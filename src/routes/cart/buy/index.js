@@ -3,7 +3,8 @@ import style from './style';
 import { useState, useEffect } from 'preact/hooks';
 import Delivery from './delivery';
 import Pickup from './pickup';
-import {FormattedMessage} from "react-intl";
+import PaymentsMethods from './paymentVeinte/index';
+import {FormattedMessage} from 'react-intl';
 
 let BuyCart = ({ }) => {
   const [activeTab, setActiveTab] = useState(-1);
@@ -18,7 +19,7 @@ let BuyCart = ({ }) => {
           <li class={`step ${getClass(activeTab, 0)}`}>
             <div class={`step-title waves-effect waves-dark ${style.stepTitle}`}  onClick={() => setActiveTab(0)}>
               <FormattedMessage id="txtStep1">
-                {message => { message } }.
+                "{message => { message } }"
               </FormattedMessage>
             </div>
             <div class="step-content">
@@ -57,14 +58,15 @@ let BuyCart = ({ }) => {
               </FormattedMessage>
             </div>
             <div class="step-content">
-                <div class="row">
+                { /*<div class="row">
                   <div class={`col s6 ${style.alignCenter}`}>
                     <button onClick={() => setActiveTab(1)}>ZELLE</button>
                   </div>
                   <div class="col s6">
                     <button onClick={() => setActiveTab(1)}>VEINTE</button>
                   </div>
-                </div>
+                </div>*/ }
+                <PaymentsMethods />
             </div>
           </li>
           <li class={`step ${getClass(activeTab, 2)}`}>

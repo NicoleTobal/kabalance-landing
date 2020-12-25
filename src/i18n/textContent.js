@@ -80,7 +80,48 @@ export const textSiteContent = {
         'txtNotes' : "Notas",
         'btnContinue': "Continuar",
         'btnDelivery': "Entrega",
-        'btnPickup': "Recoger"
+        'btnPickup': "Recoger",
+
+        // ------------------------------------------
+        // ------------ PAYMENTS CONTENT ------------
+        'txtPaymentData': "Datos para el pago",
+        'btnEmail': "Email",
+        'txtMobilePayment': "Pago Móvil",
+        'btnTransfer': "Transferencia",
+        'btnCrypto': "Cryptomonedas",
+        'btnCreditCard': "Crédito",
+        'btnToPay': "Pagar",
+        'txtCoin': 'Moneda',
+        'txtCodRef': 'Código de Referencia',
+        'txtNames': 'Nombre',
+        'txtSurnames': 'Apellidos',
+        'txtCard': 'Tarjeta',
+        'txtExp': 'Exp',
+        'txtCVV': 'CVV',
+        'txtQuotation': 'Cotización',
+        'txtCI': 'Cédula de Identidad',
+        'txtPhone': 'Teléfono',
+        'txtAmount': 'Cantidad',
+        'txtNotify': 'Notificar',
+        'txtTransfer': 'Transferencia',
+        'txtAccountNumber': 'Número de cuenta',
+        'txtPayType' : "Tipo de pago",
+        'txtAccountType' : "Tipo de cuenta",
+        'txtYourEmail' : "Su Email",
+
+        // Validations
+        'nameReq': 'Nombre requerido',
+        'surnamesReq': 'Apellidos requeridos',
+        'emailReq': 'Email requerido',
+        'phoneReq': 'Teléfono requerido',
+        'phonePat': 'Teléfono no válido',
+        'ciReq': 'Cédula requerida',
+        'amountReq': 'Monto requerido',
+        'currencyReq': 'Moneda requerida',
+        'sourceReq': 'No. de cuenta requerido',
+        'payTypeReq' : "Tipo de pago requerido",
+        'accountTypeReq' : "Tipo de cuenta requerida"
+
     },
     'en-US': {
         'app.title': "Web site in english",
@@ -162,6 +203,46 @@ export const textSiteContent = {
         'txtNotes' : "Notas",
         'btnContinue': "Continue",
         'btnDelivery': "Delivery",
-        'btnPickup': "Pickup"
-    },
+        'btnPickup': "Pickup",
+
+        // ------------------------------------------
+        // ------------ PAYMENTS CONTENT ------------
+        'txtPaymentData': "Data for payment",
+        'btnEmail': "Email",
+        'txtMobilePayment': "Mobile Payment",
+        'btnTransfer': "Transfer",
+        'btnCrypto': "Cryptocurrency",
+        'btnCreditCard': "Credit",
+        'btnToPay': "Pay",
+        'txtCoin': 'Coin',
+        'txtCodRef': 'Reference Code',
+        'txtNames': 'Names',
+        'txtSurnames': 'Lastnames',
+        'txtCard': 'Card',
+        'txtExp': 'Exp',
+        'txtCVV': 'CVV',
+        'txtQuotation': 'Quotation',
+        'txtCI': 'Identification Card',
+        'txtPhone': 'Phone',
+        'txtAmount': 'Amount',
+        'txtNotify': 'Notify',
+        'txtTransfer': 'Transfer',
+        'txtAccountNumber': 'Account number',
+        'txtPayType' : "Payment Tipe",
+        'txtAccountType' : "Account type",
+        'txtYourEmail' : "Your Email",
+
+        // Validations
+        'nameReq': 'Name required',
+        'surnamesReq': 'Apellidos required',
+        'emailReq': 'Email required',
+        'phoneReq': 'Phone required',
+        'phonePat': 'Phone not valid',
+        'ciReq': 'Identity card required',
+        'amountReq': 'Amount required',
+        'currencyReq': 'Currency required',
+        'sourceReq': 'Account numbre required',
+        'payTypeReq' : 'Payment type required',
+        'accountTypeReq' : "Account tipe required"
+    }
 }
