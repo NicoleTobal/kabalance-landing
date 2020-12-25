@@ -1,5 +1,6 @@
 import { h } from 'preact';
 import style from './style';
+import {FormattedMessage} from "react-intl";
 
 const AboutUs = () => {
   return (
@@ -9,7 +10,9 @@ const AboutUs = () => {
           <path class={style.path_vert} stroke-width="3" stroke="#2B6845" d="M30 0 v200 300" />
         </svg>
       </div>
-      <h2>Sobre mi</h2>
+        <FormattedMessage id="titleAbout">
+            {message => <h2>"{message}"</h2>}
+        </FormattedMessage>
       <div class="row col-md-12">
         <div class="col-md-6">
           <p>

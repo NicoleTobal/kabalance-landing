@@ -4,9 +4,10 @@ import { useState, useEffect } from 'preact/hooks';
 import MovingImage from '../movingImage';
 import { connect } from 'react-redux';
 import { addProduct } from '../../../stores/cartStore';
+import {FormattedMessage} from "react-intl";
 
 // FIX ME: add another component for products characteristics
-let RecipeMenu = ({ addProduct, image, title, price: productPrice, flavours = [], styles = [], sizes = [], onClick, collapsed }) => {
+let RecipeMenu = ({ addProduct, image, title, price: productPrice, flavours = [], styles = [], sizes = [], onClick, collapsed, language }) => {
   const [hide, setHide] = useState(true);
   const [selectedFlavour, setSelectedFlavour] = useState('');
   const [selectedStyle, setSelectedStyle] = useState('');
@@ -15,6 +16,10 @@ let RecipeMenu = ({ addProduct, image, title, price: productPrice, flavours = []
   const shouldBlock = flavours.length > 0 && selectedFlavour === '' ||
     styles.length > 0 && selectedStyle === '' ||
     sizes.length > 0 && selectedSize === '';
+  const selectText = (language === 'es-ES' ? 'Seleccionar' : 'Select' );
+  const sizeText = (language === 'es-ES' ? 'TAMAÑO' : 'SIZE' );
+  const flavorText = (language === 'es-ES' ? 'SABOR' : 'FLAVOR' );
+  const styleText = (language === 'es-ES' ? 'ESTILO' : 'STYLE' );
   useEffect(() => {
     if (collapsed) {
       setHide(true);
@@ -67,10 +72,10 @@ let RecipeMenu = ({ addProduct, image, title, price: productPrice, flavours = []
                     {
                       flavours.length > 0 ? (
                         <div class={style.optionsRow}>
-                          <div class={style.title}>SABOR</div>
+                          <div class={style.title}>{flavorText}</div>
                           <div class="dropdown"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class={`${style.option} dropdown-toggle`}>
-                              {selectedFlavour === '' ? 'Seleccionar' : selectedFlavour}
+                              {selectedFlavour === '' ? selectText : selectedFlavour}
                             </div>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                               {
@@ -89,10 +94,10 @@ let RecipeMenu = ({ addProduct, image, title, price: productPrice, flavours = []
                     {
                       styles.length > 0 ? (
                         <div class={style.optionsRow}>
-                          <div class={style.title}>ESTILO</div>
+                          <div class={style.title}>{styleText}</div>
                           <div class="dropdown"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class={`${style.option} dropdown-toggle`}>
-                              {selectedStyle === '' ? 'Seleccionar' : selectedStyle}
+                              {selectedStyle === '' ? selectText : selectedStyle}
                             </div>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                               {
@@ -111,10 +116,10 @@ let RecipeMenu = ({ addProduct, image, title, price: productPrice, flavours = []
                     {
                       sizes.length > 0 ? (
                         <div class={style.optionsRow}>
-                          <div class={style.title}>TAMAÑO</div>
+                          <div class={style.title}>{sizeText}</div>
                           <div class="dropdown"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class={`${style.option} dropdown-toggle`}>
-                              {selectedSize === '' ? 'Seleccionar' : selectedSize}
+                              {selectedSize === '' ? selectText : selectedSize}
                             </div>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                               {
@@ -138,7 +143,9 @@ let RecipeMenu = ({ addProduct, image, title, price: productPrice, flavours = []
                       <span onClick={() => { if (quantity < 10 && !shouldBlock) { setQuantity(quantity + 1) }}}>+</span>
                     </div>
                     <p class={style.price}>${productPrice * quantity}</p>
-                    <button onClick={addToCart}>Agregar</button>
+                    <FormattedMessage id="btnAdd">
+                      {message => <button onClick={addToCart}>{message}</button>}
+                    </FormattedMessage>
                   </div>
                 </div>
               </div>

@@ -8,6 +8,7 @@ const productList = [
   {
     image: "https://instagram.fccs3-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/108121621_383700135925484_2496260514079274856_n.jpg?_nc_ht=instagram.fccs3-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=MwcEf-QybBAAX9DZRAS&oh=13e1aa8b00ad999db85645f0b2ae3d44&oe=5F6C5775",
     title: "Dulce de leche",
+    titleEng: "Milk sweet",
     price: 5,
     flavours: [],
     styles: [],
@@ -16,22 +17,27 @@ const productList = [
   {
     image: "https://instagram.fccs3-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/108121621_383700135925484_2496260514079274856_n.jpg?_nc_ht=instagram.fccs3-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=MwcEf-QybBAAX9DZRAS&oh=13e1aa8b00ad999db85645f0b2ae3d44&oe=5F6C5775",
     title: "Parlova",
+    titleEng: "Parlova",
     price: 10,
     flavours: [],
     styles: ['Normal', 'Sugar free', 'Vegana'],
-    sizes: ['Pequeño', 'Grande']
+    sizes: ['Pequeño', 'Grande'],
+    sizesEng: ['Small', 'Big']
   },
   {
     image: "https://instagram.fccs3-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/108121621_383700135925484_2496260514079274856_n.jpg?_nc_ht=instagram.fccs3-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=MwcEf-QybBAAX9DZRAS&oh=13e1aa8b00ad999db85645f0b2ae3d44&oe=5F6C5775",
     title: "Marquesa",
+    titleEng: "Marquesa",
     price: 12,
     flavours: ["Arequipe", "Limón", "Chocolate", "Coco"],
     styles: ['Normal', 'Gluten free', 'Sugar free'],
-    sizes: ['Pequeño', 'Mediano', 'Grande']
+    sizes: ['Pequeño', 'Mediano', 'Grande'],
+    sizesEng: ['Small', 'Medium', 'Big']
   },
   {
     image: "https://instagram.fccs3-1.fna.fbcdn.net/v/t51.2885-15/e35/p1080x1080/108121621_383700135925484_2496260514079274856_n.jpg?_nc_ht=instagram.fccs3-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=MwcEf-QybBAAX9DZRAS&oh=13e1aa8b00ad999db85645f0b2ae3d44&oe=5F6C5775",
     title: "Oblea",
+    titleEng: "Oblea",
     price: 3,
     flavours: ["Chocolate", "Coco", "Vainilla", "Matcha", "Taro", "Dulce de leche", "Algodón de azucar", "Café"],
     styles: [],
@@ -112,7 +118,8 @@ class Products extends Component {
   }
 
 	render() {
-    const { city } = this.props;
+      const { city } = this.props;
+
     if (city === '' && !this.state.countrySelected) {
       return <CountrySelection onCountrySelect={e => this.onCountrySelect(e)} />;
     }
@@ -122,15 +129,16 @@ class Products extends Component {
         class={`${style.productContainer} row col-md-12 animate__animated animate__fadeInRight animate__normal`}
       >
          {
-          this.state.products.map((product, index) => (
+          this.state.products.map((product, index)=> (
             <div class={`${style.product} ${this.getColumnWidth(index)}`} key={index}>
               <RecipeMenu
+                language = { this.props.productsLang }
                 image={product.image}
-                title={product.title}
+                title={this.props.productsLang === 'es-ES' ? product.title :  product.titleEng }
                 price={product.price}
                 isActive={true}
                 flavours={product.flavours}
-                sizes={product.sizes}
+                sizes={this.props.productsLang === 'es-ES' ? product.sizes : product.sizesEng }
                 styles={product.styles}
                 onClick={() => this.onArrowButtonClick(index)}
                 collapsed={this.state.currentImage !== -1 && this.state.currentImage !== index}

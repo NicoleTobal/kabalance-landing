@@ -3,13 +3,16 @@ import style from './style';
 import AnimatedButton from '../products/animatedButton';
 import { connect } from 'react-redux';
 import { emptyCart, removeProduct, changeProductQuantity } from '../../stores/cartStore';
+import {FormattedMessage} from 'react-intl';
 
-let Cart = ({ products, emptyCart, removeProduct, changeProductQuantity }) => {
+let Cart = ({ products, emptyCart, removeProduct, changeProductQuantity, language }) => {
   return (
     <div class={style.cart}>
       <div class={`${style.header} ${products.length === 0 ? style.disabled : ''}`} >
         <btn class={style.emptyCartBtn} onClick={() => emptyCart()}>
-          Vaciar carrito
+            <FormattedMessage id="btnEmptyCart">
+                {message => <spam>{message}</spam>}
+            </FormattedMessage>
         </btn>
       </div>
       <div class={style.tableContainer}>
@@ -20,11 +23,31 @@ let Cart = ({ products, emptyCart, removeProduct, changeProductQuantity }) => {
                 <thead>
                   <tr>
                     <th />
-                    <th>Producto</th>
-                    <th>Descripción</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                    <th>Total</th>
+                      <th>
+                          <FormattedMessage id="headerProduct">
+                              {message => <spam>{message}</spam>}
+                          </FormattedMessage>
+                      </th>
+                      <th>
+                          <FormattedMessage id="headerDescription">
+                              {message => <spam>{message}</spam>}
+                          </FormattedMessage>
+                      </th>
+                      <th>
+                          <FormattedMessage id="headerQuantity">
+                              {message => <spam>{message}</spam>}
+                          </FormattedMessage>
+                      </th>
+                      <th>
+                          <FormattedMessage id="headerPrice">
+                              {message => <spam>{message}</spam>}
+                          </FormattedMessage>
+                      </th>
+                      <th>
+                          <FormattedMessage id="headerTotal">
+                              {message => <spam>{message}</spam>}
+                          </FormattedMessage>
+                      </th>
                     <th />
                   </tr>
                 </thead>
@@ -33,7 +56,7 @@ let Cart = ({ products, emptyCart, removeProduct, changeProductQuantity }) => {
                     products.map((product, index) => (
                       <tr key={index}>
                         <td />
-                        <td>{product.name}</td>
+                        <td>{ product.name }</td>
                         <td>{`
                           ${product.selectedFlavour ? `Sabor: ${product.selectedFlavour}` : ''}
                           ${product.selectedStyle ? `Estilo: ${product.selectedStyle}` : ''}
@@ -76,7 +99,9 @@ let Cart = ({ products, emptyCart, removeProduct, changeProductQuantity }) => {
       </div>
       <div class={`${style.footer} ${products.length === 0 ? style.disabled : ''}`}>
         <a href="/buy" >
-          <AnimatedButton text="COMPRAR" extraClass="blackBtn" />
+            <FormattedMessage id="btnToBuy">
+                {message => <AnimatedButton text={message} onClick={() => {}} extraClass="blackBtn" />}
+            </FormattedMessage>
         </a>
       </div>
     </div>
