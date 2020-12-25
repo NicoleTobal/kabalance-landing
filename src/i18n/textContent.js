@@ -130,8 +130,13 @@ export const textSiteContent = {
         'currencyReq': 'Moneda requerida',
         'sourceReq': 'No. de cuenta requerido',
         'payTypeReq' : "Tipo de pago requerido",
-        'accountTypeReq' : "Tipo de cuenta requerida"
+        'accountTypeReq' : "Tipo de cuenta requerida",
 
+        // RecipeMenu
+        'flavorText': 'SABOR',
+        'sizeText': 'TAMAÑO',
+        'styleText': 'ESTILO',
+        'selectText': 'Seleccionar',
     },
     'en-US': {
         'app.title': "Web site in english",
@@ -263,6 +268,12 @@ export const textSiteContent = {
         'currencyReq': 'Currency required',
         'sourceReq': 'Account numbre required',
         'payTypeReq' : 'Payment type required',
-        'accountTypeReq' : "Account tipe required"
+        'accountTypeReq' : "Account tipe required",
+
+        // RecipeMenu
+        'flavorText': 'FLAVOR',
+        'sizeText': 'SIZE',
+        'styleText': 'STYLE',
+        'selectText': 'Select',
     }
 }

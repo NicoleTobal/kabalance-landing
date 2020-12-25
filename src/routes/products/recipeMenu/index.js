@@ -7,7 +7,7 @@ import {addProduct} from '../../../redux';
 import internationalization from "../../../i18n/i18n";
 
 // FIX ME: add another component for products characteristics
-let RecipeMenu = ({language, addProduct, image, title, price: productPrice, flavours = [], styles = [], sizes = [], onClick, collapsed}) => {
+let RecipeMenu = ({ addProduct, image, title, price: productPrice, flavours = [], styles = [], sizes = [], onClick, collapsed}) => {
     const [hide, setHide] = useState(true);
     const [selectedFlavour, setSelectedFlavour] = useState('');
     const [selectedStyle, setSelectedStyle] = useState('');
@@ -16,10 +16,10 @@ let RecipeMenu = ({language, addProduct, image, title, price: productPrice, flav
     const shouldBlock = flavours.length > 0 && selectedFlavour === '' ||
         styles.length > 0 && selectedStyle === '' ||
         sizes.length > 0 && selectedSize === '';
-    const selectText = (language === 'es-ES' ? 'Seleccionar' : 'Select');
-    const sizeText = (language === 'es-ES' ? 'TAMAÑO' : 'SIZE');
-    const flavorText = (language === 'es-ES' ? 'SABOR' : 'FLAVOR');
-    const styleText = (language === 'es-ES' ? 'ESTILO' : 'STYLE');
+    const selectText = internationalization("selectText");
+    const sizeText = internationalization("sizeText");
+    const flavorText = internationalization("flavorText");
+    const styleText = internationalization("styleText");
     useEffect(() => {
         if (collapsed) {
             setHide(true);
@@ -57,7 +57,6 @@ let RecipeMenu = ({language, addProduct, image, title, price: productPrice, flav
                         class={`${style.cont_modal} ${hide || collapsed ? '' : style.cont_modal_active} ${style.is_current}`}>
                         <div class={style.cont_photo}>
                             <div class={style.cont_img_back}>
-
                                 <MovingImage
                                     current={0}
                                     slide={{
