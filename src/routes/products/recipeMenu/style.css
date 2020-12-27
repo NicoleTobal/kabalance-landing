@@ -45,6 +45,7 @@ background-color: #D8D9DB;
 }
 
 .cont_photo {
+  cursor: pointer;
   position: relative;
   width: 250px;
   height: 450px;

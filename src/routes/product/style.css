@@ -1,0 +1,168 @@
+.product {
+  position: relative;
+  height: auto;
+  display: block;
+  padding-top: 90px;
+  text-align: left;
+}
+
+.product p {
+  font-family: Reboto-Light;
+  margin: 25px 0;
+  color: black;
+  margin-right: 0;
+  text-align: left;
+}
+
+.product h6 {
+  text-align: left;
+}
+
+.product h4 {
+  text-align: left;
+}
+
+.product .optionsRow {
+  text-align: left;
+  width: 100%;
+}
+
+.product .orderData {
+  text-align: left;
+}
+
+.product .quantity {
+  margin: 0;
+}
+
+.pictures {
+  display: block;
+}
+
+.pictures img {
+  height: auto;
+  width: 100%;
+}
+
+.pictures img.selected {
+  box-shadow: 0px 2px 5px #888888;
+}
+
+.options p {
+  margin: 0;
+}
+
+.options input {
+  height: 17px;
+  width: 17px;
+  position: absolute;
+  left: 16px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  opacity: 0;
+}
+
+.options span {
+  height: auto;
+  width: auto;
+  border-radius: 20px;
+  float: left;
+  margin: 6px 8px 0 0;
+  display: table-cell;
+  color: black;
+  padding: 0 20px;
+}
+
+.options span.active {
+  background-color: #286141;
+  color: white;
+}
+
+.optionsRow {
+  display: inline-block;
+  justify-content: center;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+
+.optionsRow span {
+  font-family: Reboto-Light;
+  letter-spacing: 1px;
+}
+
+.optionsRow .option {
+  margin: 0;
+  padding: 5px 10px;
+  font-family: Reboto-Light;
+  cursor: pointer;
+  background-color: #ffffff;
+  width: 130px;
+}
+
+
+.orderData button {
+  background-color: #173d2e;
+  letter-spacing: 3px;
+  margin-left: 0;
+}
+
+.orderData {
+  position: relative;
+  margin: 0 auto;
+}
+
+.quantity {
+  display: flex;
+  background-color: white;
+  width: 80px;
+  border-radius: 6px;
+  padding: 6px;
+}
+
+.quantity span {
+  cursor: pointer;
+  font-family: Reboto-Light;
+  padding: 0 10px;
+}
+.quantity p {
+  font-family: Reboto-Light;
+}
+
+.orderData p {
+  margin: 0;
+}
+
+.orderData .price {
+  margin-top: 10px;
+}
+
+.disabled span {
+  color: lightgray;
+}
+
+.goback a {
+  padding: 0 50px;
+  cursor: pointer;
+  margin: 0 0 20px;
+  text-decoration: none;
+  display: flex;
+}
+
+.goback a img {
+  transform: rotate(180deg);
+  height: 20px;
+  margin: 0;
+  width: 30px
+}
+
+.goback a p {
+  margin: 0 20px;
+}
+
+.disabled button,
+.disabled button:hover,
+.disabled button:visited,
+.disabled button:focus {
+  cursor: auto;
+  background-color: gray;
+}

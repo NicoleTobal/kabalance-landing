@@ -1,71 +1,31 @@
 import { h } from 'preact';
 import style from './style';
-import { useState, useEffect } from 'preact/hooks';
 import MovingImage from '../movingImage';
 import { connect } from 'react-redux';
 import { addProduct } from '../../../stores/cartStore';
-import {FormattedMessage} from "react-intl";
 
 // FIX ME: add another component for products characteristics
-let RecipeMenu = ({ addProduct, image, title, price: productPrice, flavours = [], styles = [], sizes = [], onClick, collapsed, language }) => {
-  const [hide, setHide] = useState(true);
-  const [selectedFlavour, setSelectedFlavour] = useState('');
-  const [selectedStyle, setSelectedStyle] = useState('');
-  const [selectedSize, setSelectedSize] = useState('');
-  const [quantity, setQuantity] = useState(0);
-  const shouldBlock = flavours.length > 0 && selectedFlavour === '' ||
-    styles.length > 0 && selectedStyle === '' ||
-    sizes.length > 0 && selectedSize === '';
-  const selectText = (language === 'es-ES' ? 'Seleccionar' : 'Select' );
-  const sizeText = (language === 'es-ES' ? 'TAMAÑO' : 'SIZE' );
-  const flavorText = (language === 'es-ES' ? 'SABOR' : 'FLAVOR' );
-  const styleText = (language === 'es-ES' ? 'ESTILO' : 'STYLE' );
-  useEffect(() => {
-    if (collapsed) {
-      setHide(true);
-    }
-  }, [collapsed])
-  useEffect(() => {
-    if (!hide) {
-      setQuantity(0);
-    }
-  }, [hide]);
-  const addToCart = () => {
-    if (!shouldBlock) {
-      //add to cart
-      addProduct({
-        name: title,
-        image,
-        quantity,
-        selectedFlavour,
-        selectedSize,
-        selectedStyle,
-        price: productPrice,
-      });
-      setHide(true);
-      onClick(true);
-    }
-  };
+let RecipeMenu = ({ title, image, onClickImage }) => {
   return (
-    <div class={`${style.recipeContainer} ${hide || collapsed ? style.hide : ''} ${collapsed ? style.collapsed : ''}`}>
+    <div class={`${style.recipeContainer}`}>
       <div class={style.cont_principal} >
         <div class={style.cont_central} >
-          <div class={`${style.cont_modal} ${hide || collapsed ? '' : style.cont_modal_active} ${style.is_current}`} >
+          <div class={`${style.cont_modal} ${style.is_current}`} >
             <div class={style.cont_photo} >
-              <div class={style.cont_img_back} >
-                <MovingImage
-                  current={0}
-                  slide={{
-                    index: 0,
-                    src: image
-                  }}
-                />
+              <div class={style.cont_img_back} onClick={onClickImage}>
+                  <MovingImage
+                    current={0}
+                    slide={{
+                      index: 0,
+                      src: image
+                    }}
+                  />
               </div>
               <div class={style.cont_detalles} >
                 <h3>{title}</h3>
               </div>
             </div>
-            <div class={style.cont_text_ingredients} >
+            {/* <div class={style.cont_text_ingredients} >
               <div class={style.cont_over_hidden} >
                 <div class={style.cont_text_det_preparation} >
                   <div class={style.options}>
@@ -157,7 +117,7 @@ let RecipeMenu = ({ addProduct, image, title, price: productPrice, flavours = []
                   <path d="m361.679 275.565-223.896 223.897v51.668l275.565-275.565-275.565-275.565v51.668z" />
                 </svg>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
