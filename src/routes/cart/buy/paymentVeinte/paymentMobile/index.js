@@ -1,10 +1,8 @@
 import React, {h} from 'preact';
-import style from '../../style.css';
 import {useForm} from "react-hook-form";
-import {useEffect, useState} from "preact/hooks";
 import {connect} from "react-redux";
 import internationalization from "../../../../../i18n/i18n";
-import {doPaymentMobile, getBank} from "../../../../../redux";
+import {doPaymentMobile} from "../../../../../redux";
 
 function PaymentMobile(props, {doPaymentMobile}) {
     const {register, handleSubmit, watch, errors} = useForm();

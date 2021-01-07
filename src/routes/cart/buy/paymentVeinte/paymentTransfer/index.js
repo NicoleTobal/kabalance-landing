@@ -3,7 +3,6 @@ import {useForm} from "react-hook-form";
 import {connect} from "react-redux";
 import internationalization from "../../../../../i18n/i18n";
 import {doPaymentTransfer} from "../../../../../redux";
-import {CircleToBlockLoading} from "react-loadingg";
 
 const coins = [
     {id: 1, name: 'Bolívares', currency: 'bs'},

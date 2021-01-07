@@ -5,7 +5,8 @@ import {
     FETCH_PAYBRIDGE_REQUEST,
     FETCH_PAYBRIDGE_SUCCESS,
     FETCH_PAYBRIDGE_BANK_INFO_PGM,
-    FETCH_PAYBRIDGE_BANK_INFO_TRF
+    FETCH_PAYBRIDGE_BANK_INFO_TRF,
+    SET_PAYMENT_TYPE
 } from "./paybridgeTypes";
 
 
@@ -26,10 +27,11 @@ const fetchPaybridgeRequest = () => {
     }
 }
 
-const fetchPaybridgeSuccess = data => {
+const fetchPaybridgeSuccess = (data, operation) => {
     return {
         type: FETCH_PAYBRIDGE_SUCCESS,
-        payload: data
+        payload: data,
+        payment_type: operation
     }
 }
 
@@ -54,6 +56,13 @@ const fetchPaybridgeFailure = error => {
     }
 }
 
+export const setPaymentType = data => {
+    return {
+        type: SET_PAYMENT_TYPE,
+        payload: data
+    }
+}
+
 /**
  * Get Token
  */
@@ -74,6 +83,8 @@ export const getToken = () => {
         })
     }
 }
+
+
 
 /**
  * Get Bancamida info
@@ -116,7 +127,7 @@ export const doPaymentMobile = (body, token) => {
             }
         ).then(response => {
                 const dataResponse = response.data
-                dispatch(fetchPaybridgeSuccess(dataResponse))
+                dispatch(fetchPaybridgeSuccess(dataResponse, 'payment_mobile'))
             }).catch(error => {
                 const errorMsg = error.message;
                 dispatch(fetchPaybridgeFailure(errorMsg))
@@ -141,7 +152,7 @@ export const doPaymentTransfer = (body, token) => {
             data: body
         }).then(response => {
             const dataResponse = response.data
-            dispatch(fetchPaybridgeSuccess(dataResponse))
+            dispatch(fetchPaybridgeSuccess(dataResponse, 'payment_transfer'))
         }).catch(error => {
             const errorMsg = error.message;
             dispatch(fetchPaybridgeFailure(errorMsg))
@@ -166,9 +177,11 @@ export const doPaymentCrypto = (body, token) => {
             data: body
         }).then(response => {
             const dataResponse = response.data
-            dispatch(fetchPaybridgeSuccess(dataResponse))
+            console.log('Todo bien')
+            dispatch(fetchPaybridgeSuccess(dataResponse, 'payment_crypto'))
         }).catch(error => {
             const errorMsg = error.message;
+            console.log('Dio Error')
             dispatch(fetchPaybridgeFailure(errorMsg))
         })
     }
@@ -190,7 +203,7 @@ export const doPaymentEmail = () => {
             }
         }).then(response => {
             const dataResponse = response.data
-            dispatch(fetchPaybridgeSuccess(dataResponse))
+            dispatch(fetchPaybridgeSuccess(dataResponse, 'payment_email'))
         }).catch(error => {
             const errorMsg = error.message;
             dispatch(fetchPaybridgeFailure(errorMsg))

@@ -4,7 +4,8 @@ import {
     FETCH_PAYBRIDGE_REQUEST,
     FETCH_PAYBRIDGE_SUCCESS,
     FETCH_PAYBRIDGE_BANK_INFO_PGM,
-    FETCH_PAYBRIDGE_BANK_INFO_TRF
+    FETCH_PAYBRIDGE_BANK_INFO_TRF,
+    SET_PAYMENT_TYPE
 } from "./paybridgeTypes";
 
 const initialState = {
@@ -17,7 +18,8 @@ const initialState = {
     bank: '',
     accountNumber: '',
     rif: '',
-    phone: ''
+    phone: '',
+    payment_type: ''
 }
 
 const paybridgeReducer = (state = initialState, action) => {
@@ -66,6 +68,10 @@ const paybridgeReducer = (state = initialState, action) => {
                 show: false,
                 data: [],
                 error: action.payload
+            }
+        case SET_PAYMENT_TYPE:
+            return {
+                payment_type: action.payload
             }
         default:
             return state

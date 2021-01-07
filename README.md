@@ -6,7 +6,7 @@ The landing page for Kabalance, a food shop.
 
 - Preact
 
-## Envitomen Variables
+## Environment Variables
 
 Create a .env file in root folder
 

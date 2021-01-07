@@ -1,5 +1,4 @@
 import React, {h} from 'preact';
-import style from '../../style.css';
 import bitcoin from '../../../../../assets/images/cryptos/bitcoin.jpeg';
 import litecoin from '../../../../../assets/images/cryptos/litecoin.jpeg';
 import dash from '../../../../../assets/images/cryptos/dash.jpeg';
@@ -41,19 +40,7 @@ function PaymentCrypto(props) {
         <div className="container" id="paymentCrypto">
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input id="id_currency_cr" name="currency" type="hidden" className="validate"
-                       ref={register} value={coin.currency}/>
-                <div className="row">
-                    <div className="col s12">
-                        <div className="card with-header ">
-                            <div className="card-content">
-                                <p>
-                                    <b>{internationalization('txtPaymentData')}</b>
-                                </p>
-                                <p>Hash: <b>{coin.hash}</b></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                       ref={register} value={coin.currency} />
                 <div className="row">
                     <div className="col s12">
                         <div className="input-field col s6">
