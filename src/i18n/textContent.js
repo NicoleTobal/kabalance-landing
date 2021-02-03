@@ -234,7 +234,7 @@ export const textSiteContent = {
         'txtCreditPayment': "Credit Payment",
         'txtCryptoPayment': "Cryptocurrencies",
         'btnTransfer': "Transfer",
-        'btnCrypto': "Cryptos",
+        'btnCrypto': "Criptomonedas",
         'btnCreditCard': "Credit",
         'btnToPay': "Pay",
         'txtCoin': 'Coin',
