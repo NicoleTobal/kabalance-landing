@@ -1,26 +1,34 @@
 import { h } from 'preact';
-import style from './style';
+import style from './style.css'
 import { useState, useEffect } from 'preact/hooks';
 import Delivery from './delivery';
 import Pickup from './pickup';
 import PaymentsMethods from './paymentVeinte/index';
-import {FormattedMessage} from 'react-intl';
+import internationalization from "../../../i18n/i18n";
+import {connect} from "react-redux";
+import { getBankPGM, getBankTRF } from "../../../redux";
 
-let BuyCart = ({ }) => {
+
+let BuyCart = (props) => {
   const [activeTab, setActiveTab] = useState(-1);
   const [deliverActiveTab, setDeliverActiveTab] = useState(0);
   useEffect(() => {
     setActiveTab(0);
   }, []);
+
+  const loadBankInfo = async () => {
+    await props.getBankPGM(props.token)
+    await props.getBankTRF(props.token)
+    setActiveTab(1)
+  }
+
   const getClass = (value, index) => value === index ? 'active' : '';
   return (
     <div class={style.buyCartContainer}>
       <ul class="stepper linear">
           <li class={`step ${getClass(activeTab, 0)}`}>
             <div class={`step-title waves-effect waves-dark ${style.stepTitle}`}  onClick={() => setActiveTab(0)}>
-              <FormattedMessage id="txtStep1">
-                "{message => { message } }"
-              </FormattedMessage>
+              {internationalization("txtStep1")}
             </div>
             <div class="step-content">
               <div class="row">
@@ -28,24 +36,18 @@ let BuyCart = ({ }) => {
                   <ul class="tabs">
                     <li class="tab col s3">
                       <a class={getClass(deliverActiveTab, 0)} onClick={() => setDeliverActiveTab(0)}>
-                        <FormattedMessage id="btnDelivery">
-                          {message => { message } }.
-                        </FormattedMessage>
+                        {internationalization("btnDelivery")}
                       </a>
                     </li>
                     <li class="tab col s3">
                       <a class={getClass(deliverActiveTab, 1)} onClick={() => setDeliverActiveTab(1)}>
-                        <FormattedMessage id="btnPickup">
-                          {message => { message } }.
-                        </FormattedMessage>
+                        {internationalization("btnPickup")}
                       </a>
                     </li>
                   </ul>
                   {deliverActiveTab === 0 ? <Delivery /> : <Pickup />}
-                  <button onClick={() => setActiveTab(1)}>
-                    <FormattedMessage id="btnContinue">
-                      {message => { message } }.
-                    </FormattedMessage>
+                  <button onClick={() => loadBankInfo()}>
+                    {internationalization("btnContinue")}
                   </button>
                 </div>
               </div>
@@ -53,9 +55,7 @@ let BuyCart = ({ }) => {
           </li>
           <li class={`step ${getClass(activeTab, 1)}`}>
             <div class={`step-title waves-effect waves-dark ${style.stepTitle}`}  onClick={() => setActiveTab(1)}>
-              <FormattedMessage id="txtStep2">
-                {message => { message } }.
-              </FormattedMessage>
+              {internationalization("txtStep2")}
             </div>
             <div class="step-content">
                 { /*<div class="row">
@@ -66,14 +66,16 @@ let BuyCart = ({ }) => {
                     <button onClick={() => setActiveTab(1)}>VEINTE</button>
                   </div>
                 </div>*/ }
-                <PaymentsMethods />
+                <div className="row">
+                  <div className="col s12">
+                    <PaymentsMethods />
+                  </div>
+                </div>
             </div>
           </li>
           <li class={`step ${getClass(activeTab, 2)}`}>
             <div class={`step-title waves-effect waves-dark ${style.stepTitle}`}  onClick={() => setActiveTab(2)}>
-              <FormattedMessage id="txtStep3">
-                {message => { message } }.
-              </FormattedMessage>
+              {internationalization("txtStep3")}
             </div>
             <div class="step-content">
               End!!!!!
@@ -87,4 +89,22 @@ let BuyCart = ({ }) => {
   );
 };
 
-export default BuyCart;
+const mapStateToProps = state => {
+  return {
+    token: state.paybridge.token,
+    accountHolder: state.paybridge.accountHolder,
+    bank: state.paybridge.bank,
+    accountNumber: state.paybridge.accountNumber,
+    rif: state.paybridge.rif,
+    phone: state.paybridge.phone
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getBankPGM: (token) => dispatch(getBankPGM(token)),
+    getBankTRF: (token) => dispatch(getBankTRF(token))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BuyCart);

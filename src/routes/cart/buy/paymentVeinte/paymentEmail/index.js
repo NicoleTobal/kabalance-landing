@@ -1,51 +1,34 @@
-import React, { h } from 'preact';
-import {FormattedMessage} from "react-intl";
+import React, {h} from 'preact';
 import { useForm } from "react-hook-form";
-import {paymentMobile} from "../../../../../payments/paybridge/PaybridgeOperations";
-import {useState} from "preact/hooks";
+import { connect } from "react-redux";
+import { doPaymentEmail } from "../../../../../redux";
+import internationalization from "../../../../../i18n/i18n";
 
-const doPayment = async () => {
-    await listPayments(); // Temporally list Payments here
-}
+function PaymentEmail(props) {
 
-const PaymentEmail = () => {
-    const { register, handleSubmit, watch, errors } = useForm();
-    const [ show, setShow ] = useState('form');
+    const {register, handleSubmit, errors} = useForm();
+
     const onSubmit = async data => {
-        setShow('loading')
         const body = {
             amount: data.amount,
             pay_user: {
                 email: data.email,
-                name: data.name,
-                surname: data.surname,
-                ci: data.ci
             },
             pay_type: "email"
         }
-       // const response = await paymentEmail(body);
-        setTimeout(function(){ setShow('sent'); }, 3000);
+        props.doPaymentEmail(body, props.token)
     };
 
-    if (show === 'loading' ) {
-        return (
-            <div className="progress">
-                <div className="indeterminate"></div>
-            </div>
-        )
-    } else if ( show === 'form') {
-        return (
+    return (
             <div className="container" id="paymentEmail">
-                <form onSubmit={  handleSubmit(onSubmit)  }>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="row">
                         <div className="col s12">
                             <div className="card with-header ">
                                 <div className="card-content">
-                                <span className="card-title">
-                                    <FormattedMessage id="txtPaymentData">
-                                        {message => { message }}.
-                                    </FormattedMessage>
-                                </span>
+                                    <p>
+                                        <b>{internationalization('txtPaymentData')}</b>
+                                    </p>
                                     <p>Email: <b>test@gmail.com</b></p>
                                 </div>
                             </div>
@@ -54,56 +37,48 @@ const PaymentEmail = () => {
                     <div className="row">
                         <div className="col s12">
                             <div className="input-field col s4">
-                                <input id="id_email_pm" name="email" type="text" className="validate" ref={register({required: true, minLength: 6})} />
+                                <input id="id_email_pm" name="email" type="text" className="validate"
+                                       ref={register({required: true, minLength: 6})} />
                                 <label htmlFor="id_email_pm">
-                                    <FormattedMessage id="txtYourEmail">
-                                        {message => { message }}.
-                                    </FormattedMessage>
+                                    {internationalization('txtYourEmail')}
                                 </label>
-                                {errors.email && <span><FormattedMessage id="emailReq">
-                                        {message => {
-                                            message
-                                        }}.
-                                    </FormattedMessage></span>}
+                                {errors.email && <span>{internationalization('emailReq')}</span>}
                             </div>
                             <div className="input-field col s4">
-                                <input id="id_amount" name="amount" type="text" className="validate" ref={register({required: true})}  />
+                                <input id="id_amount" name="amount" type="text" className="validate"
+                                       ref={register({required: true})} />
                                 <label htmlFor="id_amount">
-                                    <FormattedMessage id="txtAmount">
-                                        {message => { message }}.
-                                    </FormattedMessage>
+                                    {internationalization('txtAmount')}
                                 </label>
-                                {errors.amount && <span><FormattedMessage id="amountReq">
-                                        {message => { message }}.
-                                    </FormattedMessage></span>}
+                                {errors.amount && <span>{internationalization('amountReq')}</span>}
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col s12">
                             <button type="submit">
-                                <FormattedMessage id="btnToPay">
-                                    {message => {
-                                        message
-                                    }}.
-                                </FormattedMessage>
+                                {internationalization('txtNotify')}
                             </button>
                         </div>
                     </div>
                 </form>
-
             </div>
-        );
-    } else if ( show === 'sent') {
-        return (
-            <div className="container" >
-                <h5>
-                    Sent
-                </h5>
-            </div>
-        );
-    }
-
+    )
 }
 
-export default PaymentEmail;
+const mapStateToProps = state => {
+    return {
+        data: state.paybridge.data,
+        show: state.paybridge.show,
+        token: state.paybridge.token
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        doPaymentEmail: (body, token) => dispatch(doPaymentEmail(body, token))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentEmail);
+

@@ -84,17 +84,26 @@ export const textSiteContent = {
 
         // ------------------------------------------
         // ------------ PAYMENTS CONTENT ------------
-        'txtPaymentData': "Datos para el pago",
+        'txtPaymentData': "PAGAR A",
+        'txtPaymentNotification': "Notificación del Pago",
+        'txtAccountHolder': 'Nombre del Cliente',
         'btnEmail': "Email",
+        'txtBank': 'Banco',
         'txtMobilePayment': "Pago Móvil",
+        'txtTransferPayment': "Transferencia Bancaria",
+        'txtCryptoPayment': "Pago en Criptomonedas",
+        'txtEmailPayment': "Pago Email",
+        'txtCreditPayment': "Crédito",
         'btnTransfer': "Transferencia",
-        'btnCrypto': "Cryptomonedas",
+        'btnCrypto': "Criptomonedas",
         'btnCreditCard': "Crédito",
         'btnToPay': "Pagar",
         'txtCoin': 'Moneda',
-        'txtCodRef': 'Código de Referencia',
+        'txtCodRef': 'Número de Referencia',
         'txtNames': 'Nombre',
+        'txtFirstName': 'Primer Nombre',
         'txtSurnames': 'Apellidos',
+        'txtFirstSurnames': 'Primer Apellido',
         'txtCard': 'Tarjeta',
         'txtExp': 'Exp',
         'txtCVV': 'CVV',
@@ -108,6 +117,8 @@ export const textSiteContent = {
         'txtPayType' : "Tipo de pago",
         'txtAccountType' : "Tipo de cuenta",
         'txtYourEmail' : "Su Email",
+        'txtNotifySended': "Notificación enviada",
+        'txtHash': "Dirección",
 
         // Validations
         'nameReq': 'Nombre requerido',
@@ -120,8 +131,13 @@ export const textSiteContent = {
         'currencyReq': 'Moneda requerida',
         'sourceReq': 'No. de cuenta requerido',
         'payTypeReq' : "Tipo de pago requerido",
-        'accountTypeReq' : "Tipo de cuenta requerida"
+        'accountTypeReq' : "Tipo de cuenta requerida",
 
+        // RecipeMenu
+        'flavorText': 'SABOR',
+        'sizeText': 'TAMAÑO',
+        'styleText': 'ESTILO',
+        'selectText': 'Seleccionar',
     },
     'en-US': {
         'app.title': "Web site in english",
@@ -207,16 +223,25 @@ export const textSiteContent = {
 
         // ------------------------------------------
         // ------------ PAYMENTS CONTENT ------------
-        'txtPaymentData': "Data for payment",
+        'txtPaymentData': "PAY TO",
+        'txtPaymentNotification': "Payment Notification",
+        'txtAccountHolder': 'Account Holder',
         'btnEmail': "Email",
+        'txtBank': 'Bank',
         'txtMobilePayment': "Mobile Payment",
+        'txtTransferPayment': "Bank Transfer",
+        'txtEmailPayment': "Email Payment",
+        'txtCreditPayment': "Credit Payment",
+        'txtCryptoPayment': "Cryptocurrencies",
         'btnTransfer': "Transfer",
-        'btnCrypto': "Cryptocurrency",
+        'btnCrypto': "Criptomonedas",
         'btnCreditCard': "Credit",
         'btnToPay': "Pay",
         'txtCoin': 'Coin',
         'txtCodRef': 'Reference Code',
         'txtNames': 'Names',
+        'txtFirstName': 'First Name',
+        'txtFirstSurnames': 'First Surname',
         'txtSurnames': 'Lastnames',
         'txtCard': 'Card',
         'txtExp': 'Exp',
@@ -231,6 +256,8 @@ export const textSiteContent = {
         'txtPayType' : "Payment Tipe",
         'txtAccountType' : "Account type",
         'txtYourEmail' : "Your Email",
+        'txtNotifySended': "Notification sent",
+        'txtHash': "Address",
 
         // Validations
         'nameReq': 'Name required',
@@ -243,6 +270,12 @@ export const textSiteContent = {
         'currencyReq': 'Currency required',
         'sourceReq': 'Account numbre required',
         'payTypeReq' : 'Payment type required',
-        'accountTypeReq' : "Account tipe required"
+        'accountTypeReq' : "Account tipe required",
+
+        // RecipeMenu
+        'flavorText': 'FLAVOR',
+        'sizeText': 'SIZE',
+        'styleText': 'STYLE',
+        'selectText': 'Select',
     }
 }

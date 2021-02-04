@@ -1,5 +1,4 @@
 import React from "preact";
-import ReactLoading from "react-loading";
 
 export const Loading = () => (
     <div>

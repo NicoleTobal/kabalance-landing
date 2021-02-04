@@ -26,11 +26,11 @@
     "jest": "^24.9.0",
     "jest-preset-preact": "^1.0.0",
     "preact-cli": "^3.0.0",
+    "preact-cli-plugin-env-vars": "^1.2.1",
     "sirv-cli": "1.0.3"
   },
   "dependencies": {
     "animate.css": "^4.1.1",
-    "dotenv": "^8.2.0",
     "logger": "0.0.1",
     "materialize-css": "^1.0.0-rc.2",
     "preact": "^10.3.2",
@@ -38,11 +38,14 @@
     "preact-context": "^1.1.4",
     "preact-render-to-string": "^5.1.4",
     "preact-router": "^3.2.1",
+    "qrcode": "^1.4.4",
     "react-hook-form": "^6.11.0",
     "react-intl": "^5.8.8",
-    "react-loading": "^2.0.3",
+    "react-loadingg": "^1.7.2",
     "react-redux": "^7.2.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
   },
   "jest": {
     "preset": "jest-preset-preact",

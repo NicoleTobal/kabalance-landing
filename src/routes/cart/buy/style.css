@@ -104,3 +104,139 @@ button:hover, button:focus, button:visited, button:active {
   width: 50px;
   height: 50px;
 }
+
+.loading-container {
+  position: relative;
+  padding: 20px;
+}
+
+.loading {
+  position: absolute;
+  top: 200px;
+}
+
+.cart {
+  padding-top: 60px;
+}
+
+.cart table {
+  margin: 0 auto;
+  width: 90vw;
+}
+
+.cart .tableContainer {
+  height: 400px;
+}
+
+.tableContainer {
+  display: table;
+  margin: 0 auto;
+}
+
+.tableContainer h2 {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.cart thead th {
+  text-align: center;
+  text-transform: uppercase;
+  width: 170px;
+  background-color: #51876c;
+  color: white;
+  padding: 20px 0;
+}
+
+.cart tbody {
+  text-align: center;
+  font-family: Reboto-Light;
+}
+
+.cart tr {
+  border-bottom: 1px solid #51876c;
+}
+
+.cart tbody td {
+  padding: 20px 0;
+  color: #173d2e;
+}
+
+.header {
+  text-align: right;
+  padding: 20px 100px;
+}
+
+.cart .option {
+  display: inline;
+  background-color: white;
+  padding: 10px;
+}
+
+.cart .dropdown .dropdown-menu {
+  background-color: #E8CEBB;
+}
+
+.tableContainer img {
+  height: 38px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.emptyCartBtn {
+  margin: 20px;
+  padding: 11px 60px;
+  background-color: #51876c;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+}
+
+.emptyCartBtn:hover, .emptyCartBtn:focus, .emptyCartBtn:visited, .emptyCartBtn:active {
+  background-color: #E8CEBB;
+  border: none !important;
+  outline: none;
+}
+
+.disabled {
+  display: none;
+}
+
+.productQuantity {
+  display: flex;
+  justify-content: center;
+}
+
+.productQuantity p {
+  margin: 12px 30px;
+}
+
+.arrows {
+  width: 20px;
+  margin: 0;
+}
+
+.arrows svg {
+  height: 15px;
+  fill: #51876c;
+  width: 20px;
+  cursor: pointer;
+}
+
+.upArrow {
+  transform: rotate(-90deg);
+}
+
+.downArrow {
+  transform: rotate(90deg);
+}
+
+tr.total {
+  border-bottom: none;
+}
+
+td, th {
+  text-align: center;
+  border-radius: 0;
+}
