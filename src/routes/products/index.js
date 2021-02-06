@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import React, {h, Component} from 'preact';
 import style from './style';
 import RecipeMenu from './recipeMenu';
 import CountrySelection from './countrySelection';
@@ -69,19 +69,22 @@ class Products extends Component {
     }
   }
 
-  onCountrySelect(e) {
-    this.setState({ countrySelected: e.target.innerText });
-  }
-
-  getColumnWidth(index) {
-    if (this.state.currentImage !== -1) {
-      if (index !== this.state.currentImage) {
-        return 'col-md-2';
-      }
-      return 'col-md-6';
+    getColumnWidth(index) {
+        if (this.state.currentImage !== -1) {
+            if (index !== this.state.currentImage) {
+                return 'col-md-2';
+            }
+            return 'col-md-6';
+        }
+        return 'col-md-3';
     }
-    return 'col-md-3';
-  }
+
+    onArrowButtonClick(index) {
+        if (index === this.state.currentImage) {
+            return this.setState({currentImage: -1});
+        }
+        return this.setState({currentImage: index});
+    }
 
 	render() {
     const { city } = this.props;
