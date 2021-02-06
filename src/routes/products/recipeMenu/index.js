@@ -1,69 +1,63 @@
 import {h} from 'preact';
 import style from './style';
-import {useState, useEffect} from 'preact/hooks';
 import MovingImage from '../movingImage';
-import {connect} from 'react-redux';
-import {addProduct} from '../../../redux';
-import internationalization from "../../../i18n/i18n";
+import { connect } from 'react-redux';
+// import { addProduct } from '../../../stores/cartStore';
 
 // FIX ME: add another component for products characteristics
-let RecipeMenu = ({ addProduct, image, title, price: productPrice, flavours = [], styles = [], sizes = [], onClick, collapsed}) => {
-    const [hide, setHide] = useState(true);
-    const [selectedFlavour, setSelectedFlavour] = useState('');
-    const [selectedStyle, setSelectedStyle] = useState('');
-    const [selectedSize, setSelectedSize] = useState('');
-    const [quantity, setQuantity] = useState(0);
-    const shouldBlock = flavours.length > 0 && selectedFlavour === '' ||
-        styles.length > 0 && selectedStyle === '' ||
-        sizes.length > 0 && selectedSize === '';
-    const selectText = internationalization("selectText");
-    const sizeText = internationalization("sizeText");
-    const flavorText = internationalization("flavorText");
-    const styleText = internationalization("styleText");
-    useEffect(() => {
-        if (collapsed) {
-            setHide(true);
-        }
-    }, [collapsed])
-    useEffect(() => {
-        if (!hide) {
-            setQuantity(0);
-        }
-    }, [hide]);
-    const addToCart = () => {
-        if (!shouldBlock) {
-            //add to cart
-            const productData = {
-                name: title,
-                image,
-                quantity,
-                selectedFlavour,
-                selectedSize,
-                selectedStyle,
-                price: productPrice,
-            }
-
-            addProduct(productData);
-            setHide(true);
-            onClick(true);
-        }
-    };
-    return (
-        <div
-            class={`${style.recipeContainer} ${hide || collapsed ? style.hide : ''} ${collapsed ? style.collapsed : ''}`}>
-            <div class={style.cont_principal}>
-                <div class={style.cont_central}>
-                    <div
-                        class={`${style.cont_modal} ${hide || collapsed ? '' : style.cont_modal_active} ${style.is_current}`}>
-                        <div class={style.cont_photo}>
-                            <div class={style.cont_img_back}>
-                                <MovingImage
-                                    current={0}
-                                    slide={{
-                                        index: 0,
-                                        src: image
-                                    }}
-                                />
+let RecipeMenu = ({ title, image, onClickImage }) => {
+  return (
+    <div class={`${style.recipeContainer}`}>
+      <div class={style.cont_principal} >
+        <div class={style.cont_central} >
+          <div class={`${style.cont_modal} ${style.is_current}`} >
+            <div class={style.cont_photo} >
+              <div class={style.cont_img_back} onClick={onClickImage}>
+                  <MovingImage
+                    current={0}
+                    slide={{
+                      index: 0,
+                      src: image
+                    }}
+                  />
+              </div>
+              <div class={style.cont_detalles} >
+                <h3>{title}</h3>
+              </div>
+            </div>
+            {/* <div class={style.cont_text_ingredients} >
+              <div class={style.cont_over_hidden} >
+                <div class={style.cont_text_det_preparation} >
+                  <div class={style.options}>
+                    {
+                      flavours.length > 0 ? (
+                        <div class={style.optionsRow}>
+                          <div class={style.title}>{flavorText}</div>
+                          <div class="dropdown"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class={`${style.option} dropdown-toggle`}>
+                              {selectedFlavour === '' ? selectText : selectedFlavour}
+                            </div>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                              {
+                                flavours.map((flavour, index) => (
+                                  <a class="dropdown-item" onClick={() => setSelectedFlavour(flavour)} key={index}>
+                                    <span class={flavour === selectedFlavour ? style.active : ''} />
+                                    {flavour}
+                                  </a>
+                                ))
+                              }
+                            </div>
+                          </div>
+                        </div>
+                      ) : ''
+                    }
+                    {
+                      styles.length > 0 ? (
+                        <div class={style.optionsRow}>
+                          <div class={style.title}>{styleText}</div>
+                          <div class="dropdown"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class={`${style.option} dropdown-toggle`}>
+                              {selectedStyle === '' ? selectText : selectedStyle}
                             </div>
                             <div class={style.cont_detalles}>
                                 <h3>{title}</h3>
@@ -190,11 +184,22 @@ let RecipeMenu = ({ addProduct, image, title, price: productPrice, flavours = []
                         </div>
                     </div>
                 </div>
-            </div>
+              </div>
+              <div class={style.cont_btn_open_dets} onClick={() => {
+                onClick(hide);
+                setHide(!hide)
+              }}>
+                <svg id="Capa_1" enable-background="new 0 0 551.13 551.13" height="512" viewBox="0 0 551.13 551.13" width="512" xmlns="http://www.w3.org/2000/svg">
+                  <path d="m361.679 275.565-223.896 223.897v51.668l275.565-275.565-275.565-275.565v51.668z" />
+                </svg>
+              </div>
+            </div> */}
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
-
 
 const mapStateToProps = state => {
     return {

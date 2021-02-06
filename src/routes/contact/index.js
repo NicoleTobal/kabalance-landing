@@ -7,7 +7,7 @@ import internationalization from "../../i18n/i18n";
 const Contact = () => {
   return (
     <div id="contact" class={style.contact}>
-        <h2>"{internationalization("txtContactUs")}"</h2>
+        <h2>{internationalization("txtContactUs")}</h2>
       <SocialIcons />
       <CakeAnimation />
     </div>

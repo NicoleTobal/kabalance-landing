@@ -5,6 +5,7 @@ import {changeLanguage} from "../../redux/language/languageActions";
 import internationalization from "../../i18n/i18n";
 
 let Header = (props) => {
+    const getFlagClass = language => (props.language === language ? '' : style.disabled);
     return (
         <header class={style.header}>
             <div class={style.logo}>
@@ -28,12 +29,12 @@ let Header = (props) => {
                 <a onClick={() => {
                     props.changeLanguage('es-ES');
                 }}>
-                    <img src="/assets/images/spain.png"/>
+                    <img className={getFlagClass('es-ES')} src="/assets/images/spain.png"/>
                 </a>
                 <a onClick={() => {
                     props.changeLanguage('en-US');
                 }}>
-                    <img className={style.disabled} src="/assets/images/united-states.png"/>
+                    <img className={getFlagClass('en-US')} src="/assets/images/united-states.png"/>
                 </a>
                 <span class={style.ordersNumber}>
                   {props.products.reduce((prev, product) => {
@@ -54,7 +55,7 @@ let Header = (props) => {
 };
 
 const mapStateToProps = state => {
-    return {products: state.cart.products};
+    return {products: state.cart.products, language: state.language.language};
 }
 
 const mapDispatchToProps = dispatch => {
