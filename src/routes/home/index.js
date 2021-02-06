@@ -26,7 +26,7 @@ const Home = (props) => (
       <img class={style.logo} src="/assets/images/logo-black.png" />
       <div class={style.firstSection}>
         <div class={style.content}>
-          <h1>"{internationalization("phrase")}"</h1>
+          <h1>{internationalization("phrase")}</h1>
           <div class={style.social}>
             <Instagram />
           </div>
@@ -34,7 +34,7 @@ const Home = (props) => (
         </div>
       </div>
       <div class={style.secondSection}>
-        <h1>"{internationalization("txtFindUs")}"</h1>
+        <h1>{internationalization("txtFindUs")}</h1>
         <div class={`${style.resellers} row`}>
           {
             resellers.map((reseller, index) => (

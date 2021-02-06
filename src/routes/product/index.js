@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import style from './style';
 import { useState } from 'preact/hooks';
-import { addProduct } from '../../stores/cartStore';
+import { addProduct } from "../../redux";
 import { connect } from 'react-redux';
 
 let Product = ({ addProduct, image, images, title, price: productPrice, flavours = [], styles = [], sizes = [] }) => {

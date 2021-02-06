@@ -5,7 +5,7 @@ import internationalization from "../../i18n/i18n";
 const Recipes = () => {
   return (
     <div class={style.recipes}>
-        <h2>"{internationalization("titleRecipes")}"</h2>
+        <h2>{internationalization("titleRecipes")}</h2>
     </div>
   );
 }

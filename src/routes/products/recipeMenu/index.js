@@ -2,7 +2,7 @@ import {h} from 'preact';
 import style from './style';
 import MovingImage from '../movingImage';
 import { connect } from 'react-redux';
-import { addProduct } from '../../../stores/cartStore';
+// import { addProduct } from '../../../stores/cartStore';
 
 // FIX ME: add another component for products characteristics
 let RecipeMenu = ({ title, image, onClickImage }) => {
